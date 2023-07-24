@@ -1,5 +1,705 @@
-<mat-form-field appearance="fill">
-    <mat-label>Search countries by name</mat-label>
-    <input matInput/>
-    <mat-icon matPrefix>search</mat-icon>
-  </mat-form-field>
+<div class="container mb-4">
+    <div class="row">
+        <mat-form-field class="col-12 col-lg-5 mx-1" appearance="fill">
+            <mat-label>city,state,zip code,or "remote"</mat-label>
+            <input matInput />
+            <mat-icon matPrefix>location_on</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="col-12 col-lg-5 mx-1" appearance="fill">
+            <mat-label>Job title, keywords, or company</mat-label>
+            <input matInput />
+            <mat-icon matPrefix>search</mat-icon>
+        </mat-form-field>
+
+        <button class="col-11 col-lg-1 search-button mx-lg-1" mat-raised-button color="primary">
+            <mat-icon matPrefix>search</mat-icon>
+            Search
+        </button>
+    </div>
+
+    <button class="option-button" mat-button [matMenuTriggerFor]="invertebrates">
+        Date posted <mat-icon>expand_more</mat-icon>
+    </button>
+
+    <mat-menu #invertebrates="matMenu">
+        <button mat-menu-item>Insects</button>
+        <button mat-menu-item>Molluscs</button>
+        <button mat-menu-item>Crustaceans</button>
+        <button mat-menu-item>Corals</button>
+        <button mat-menu-item>Arachnids</button>
+        <button mat-menu-item>Velvet worms</button>
+        <button mat-menu-item>Horseshoe crabs</button>
+    </mat-menu>
+
+    <button class="option-button" mat-button [matMenuTriggerFor]="invertebrates">
+        Remote <mat-icon>expand_more</mat-icon>
+    </button>
+
+    <mat-menu #invertebrates="matMenu">
+        <button mat-menu-item>Insects</button>
+        <button mat-menu-item>Molluscs</button>
+        <button mat-menu-item>Crustaceans</button>
+        <button mat-menu-item>Corals</button>
+        <button mat-menu-item>Arachnids</button>
+        <button mat-menu-item>Velvet worms</button>
+        <button mat-menu-item>Horseshoe crabs</button>
+    </mat-menu>
+
+    <button class="option-button" mat-button [matMenuTriggerFor]="invertebrates">
+        Pay <mat-icon>expand_more</mat-icon>
+    </button>
+
+    <mat-menu #invertebrates="matMenu">
+        <button mat-menu-item>Insects</button>
+        <button mat-menu-item>Molluscs</button>
+        <button mat-menu-item>Crustaceans</button>
+        <button mat-menu-item>Corals</button>
+        <button mat-menu-item>Arachnids</button>
+        <button mat-menu-item>Velvet worms</button>
+        <button mat-menu-item>Horseshoe crabs</button>
+    </mat-menu>
+
+    <button class="option-button" mat-button [matMenuTriggerFor]="invertebrates">
+        Job type <mat-icon>expand_more</mat-icon>
+    </button>
+
+    <mat-menu #invertebrates="matMenu">
+        <button mat-menu-item>Insects</button>
+        <button mat-menu-item>Molluscs</button>
+        <button mat-menu-item>Crustaceans</button>
+        <button mat-menu-item>Corals</button>
+        <button mat-menu-item>Arachnids</button>
+        <button mat-menu-item>Velvet worms</button>
+        <button mat-menu-item>Horseshoe crabs</button>
+    </mat-menu>
+
+    <button class="option-button" mat-button [matMenuTriggerFor]="invertebrates">
+        Residency required <mat-icon>expand_more</mat-icon>
+    </button>
+
+    <mat-menu #invertebrates="matMenu">
+        <button mat-menu-item>Insects</button>
+        <button mat-menu-item>Molluscs</button>
+        <button mat-menu-item>Crustaceans</button>
+        <button mat-menu-item>Corals</button>
+        <button mat-menu-item>Arachnids</button>
+        <button mat-menu-item>Velvet worms</button>
+        <button mat-menu-item>Horseshoe crabs</button>
+    </mat-menu>
+
+    <button class="option-button" mat-button [matMenuTriggerFor]="invertebrates">
+        Location <mat-icon>expand_more</mat-icon>
+    </button>
+
+    <mat-menu #invertebrates="matMenu">
+        <button mat-menu-item>Insects</button>
+        <button mat-menu-item>Molluscs</button>
+        <button mat-menu-item>Crustaceans</button>
+        <button mat-menu-item>Corals</button>
+        <button mat-menu-item>Arachnids</button>
+        <button mat-menu-item>Velvet worms</button>
+        <button mat-menu-item>Horseshoe crabs</button>
+    </mat-menu>
+
+    <button class="option-button" mat-button [matMenuTriggerFor]="invertebrates">
+        Company <mat-icon>expand_more</mat-icon>
+    </button>
+
+    <mat-menu #invertebrates="matMenu">
+        <button mat-menu-item>Insects</button>
+        <button mat-menu-item>Molluscs</button>
+        <button mat-menu-item>Crustaceans</button>
+        <button mat-menu-item>Corals</button>
+        <button mat-menu-item>Arachnids</button>
+        <button mat-menu-item>Velvet worms</button>
+        <button mat-menu-item>Horseshoe crabs</button>
+    </mat-menu>
+
+    <button class="option-button" mat-button [matMenuTriggerFor]="invertebrates">
+        Posted by <mat-icon>expand_more</mat-icon>
+    </button>
+
+    <mat-menu #invertebrates="matMenu">
+        <button mat-menu-item>Insects</button>
+        <button mat-menu-item>Molluscs</button>
+        <button mat-menu-item>Crustaceans</button>
+        <button mat-menu-item>Corals</button>
+        <button mat-menu-item>Arachnids</button>
+        <button mat-menu-item>Velvet worms</button>
+        <button mat-menu-item>Horseshoe crabs</button>
+    </mat-menu>
+
+    <button class="option-button" mat-button [matMenuTriggerFor]="invertebrates">
+        Experience level <mat-icon>expand_more</mat-icon>
+    </button>
+
+    <mat-menu #invertebrates="matMenu">
+        <button mat-menu-item>Insects</button>
+        <button mat-menu-item>Molluscs</button>
+        <button mat-menu-item>Crustaceans</button>
+        <button mat-menu-item>Corals</button>
+        <button mat-menu-item>Arachnids</button>
+        <button mat-menu-item>Velvet worms</button>
+        <button mat-menu-item>Horseshoe crabs</button>
+    </mat-menu>
+
+    <button class="option-button" mat-button [matMenuTriggerFor]="invertebrates">
+        Education <mat-icon>expand_more</mat-icon>
+    </button>
+
+    <mat-menu #invertebrates="matMenu">
+        <button mat-menu-item>Insects</button>
+        <button mat-menu-item>Molluscs</button>
+        <button mat-menu-item>Crustaceans</button>
+        <button mat-menu-item>Corals</button>
+        <button mat-menu-item>Arachnids</button>
+        <button mat-menu-item>Velvet worms</button>
+        <button mat-menu-item>Horseshoe crabs</button>
+    </mat-menu>
+</div>
+<mat-divider></mat-divider>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 container-fluid">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="container px-4 py-2">
+                        <div class="row">
+                            <span class="my-2" style="color: rgb(146, 146, 146);">
+                                remote jobs
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                Sort by: <b>Relevance</b> - date
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 my-3 d-none d-lg-block">
+            <mat-card class="example-card job-description">
+                <mat-card-header>
+                    <mat-card-title>Jr JavaScript Developer</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="row">
+                        <a href="#" class="col-auto">
+                            PrimePay, LLC
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+
+                        <div class="col-auto ms-auto stars-icons">
+                            <span *ngFor="let i of [1, 2, 3, 4, 5]" class="star-icon">
+                                <mat-icon class="stars">{{ 3 >= i ? 'star' : 'star_border' }}</mat-icon>
+                            </span>
+                        </div>
+                        <a href="#" class="col-auto">
+                            75 Reviews
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                    <div class="row my-3">
+                        <span class="col-12" style="color: rgb(115, 115, 115);">
+                            Remote
+                        </span>
+                        <span class="my-2 col-12">
+                            $90,000 - $100,000 a year
+                        </span>
+                    </div>
+                    <div class="row">
+                        <button class="col-11 col-lg-auto  mx-lg-2" mat-raised-button color="primary">
+                            Apply on company site
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </button>
+                        <button class="col-11 col-lg-auto  mx-lg-2 favorite-hide" mat-raised-button color="primary">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+
+
+                        <button class="col-11 col-lg-auto  mx-lg-2 favorite-hide" mat-raised-button color="primary">
+                            <i class="fas fa-ban"></i>
+                        </button>
+                    </div>
+                    <div class="container my-4 scrollable-div">
+
+                        <div class="row">
+                            <mat-divider></mat-divider>
+                            <h2 class="mt-3">Profile insights</h2>
+                            <div class="col-auto  d-flex align-items-center">
+                                <mat-icon>lightbulb_outline</mat-icon>
+                                <b class="my-auto">
+                                    &nbsp;&nbsp;Skills
+                                </b>
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="ms-4 col-9  d-flex align-items-center">
+                                <button class="badges mx-1" mat-flat-button disabled>
+                                    React &nbsp;<i class="fas fa-question"></i>
+                                </button>
+                                <button class="badges mx-1" mat-flat-button disabled>
+                                    NodeJs &nbsp;<i class="fas fa-question"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <mat-divider></mat-divider>
+                            <h2 class="mt-3">Job details</h2>
+                            <div class="col-auto  d-flex align-items-center">
+                                <mat-icon>work</mat-icon>
+                                <b class="my-auto">
+                                    &nbsp;&nbsp;Job type
+                                </b>
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="ms-4 col-9  d-flex align-items-center">
+                                <button class="badges mx-1" mat-flat-button disabled>Part-time</button>
+                                <button class="badges mx-1" mat-flat-button disabled>Contract</button>
+                            </div>
+                        </div>
+
+                        <mat-divider></mat-divider>
+                        <div class="row mt-3">
+                            <h3 class="mt-3"> <b>ABOUT US:</b></h3>
+                            <p>
+                                Newry is a consulting firm focused on driving growth for innovation leadership at global
+                                companies. Since 1987, we have been helping our clients identify and pursue
+                                opportunities in new markets and technologies. Our clients are typically innovators in
+                                materials science, polymers and chemicals, industrial systems, and components, or
+                                finished goods. Our long-standing professional relationships are proof of our high
+                                success rate in delivering results above and beyond expectations.
+
+                                Newry recruits, employs, contracts, trains, compensates, and promotes regardless of
+                                race, religion, color, national origin, sex, disability, age, veteran status, and other
+                                protected statuses as required by applicable law.
+                            </p>
+                        </div>
+                        <div class="row mt-3">
+                            <h3 class="mt-3"> <b>ABOUT THE OPPORTUNITY:</b></h3>
+                            <p>
+                                As a Part-Time Research Contractor engaged with Newry, you will help our project teams
+                                discover growth opportunities for our clients by investigating technical publications,
+                                trade and academic journals, and other secondary data sources (e.g., patents, press
+                                releases, company websites, earnings reports, etc.). Your thorough review of these
+                                sources could lead our clients to innovate on applications with novel materials, launch
+                                a new product concept, or venture into a new market. Our project teams will collaborate
+                                with you to set weekly goals and review your discoveries. This is a project-based
+                                opportunity that will include weekly compensation for services performed.
+
+                                Our ideal contractor will have 15-20 or more hours per week available for the duration
+                                of the project and is able to work remotely. Interested contractors must have internet
+                                access, the ability to participate in weekly phone calls, and access to a laptop.
+
+                                Based on performance, the applicant may be re-engaged for additional future projects or
+                                recurring needs within the firm.
+                            </p>
+                        </div>
+                        <div class="row mt-3">
+                            <h3 class="mt-3"> <b>ABOUT YOU:</b></h3>
+                            <p>
+                                You have excellent academic credentials and are participating in or have completed a
+                                competitive program to earn a degree (undergraduates considered, graduate degree
+                                candidates preferred) in life sciences, physical sciences, or engineering. You are
+                                comfortable reading and analyzing technical or scientific documents and extracting
+                                critical information from them. You demonstrate a high level of curiosity, the ability
+                                to deeply analyze problems, and strong written communication skills. You can demonstrate
+                                creativity when dealing with ambiguous information and take responsibility for
+                                delivering weekly reports and summary results for your work.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <mat-divider></mat-divider>
+                </mat-card-content>
+
+                <mat-card-actions align="end">
+                    <button mat-button color="warn">
+                        <i class="fa fa-flag" aria-hidden="true"></i> REPORT
+                    </button>
+                    <button mat-button>
+                        <i class="fa fa-share-alt" aria-hidden="true"></i>SHARE
+                    </button>
+                </mat-card-actions>
+
+                <mat-card-footer>
+                    <mat-progress-bar mode="determinate" value="90"></mat-progress-bar>
+                </mat-card-footer>
+            </mat-card>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-offer',
@@ -6,5 +7,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./offer.component.css']
 })
 export class OfferComponent {
-
 }

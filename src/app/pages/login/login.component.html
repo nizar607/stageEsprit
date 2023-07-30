@@ -1,16 +1,48 @@
-<h1>login works!</h1>
-<mat-divider></mat-divider>
-<br>
-<mat-divider></mat-divider>
-<br>
-<mat-divider></mat-divider>
-<br>
-<mat-divider></mat-divider>
-<br>
-<mat-divider></mat-divider>
-<br>
-<mat-divider></mat-divider>
-<br>
-<mat-divider></mat-divider>
-<br>
+<div class="container-fluid h-100 w-100 d-flex align-items-center justify-content-center">
+    <div>
+        <div class="row">
 
+            <div class="col-12 col-md-6 mx-auto pt-5">
+                <img id="esprit-logo" class="mx-auto mt-5" src="./assets/img/Logo_ESPRIT_Ariana-removebg-preview.png" alt="Esprit logo">
+                <h1 class="d-none d-md-flex"  style="color: rgb(0, 0, 0);">
+                    
+                        Find jobs through our community
+                    
+                </h1>
+            </div>
+
+            <mat-card class="col-12 col-md-6 pt-3">
+                <mat-card-content class="row">
+                    <mat-form-field class="col-12" appearance="fill">
+                        <mat-label>example@esprit.tn</mat-label>
+                        <input matInput />
+                        <mat-icon matPrefix>email</mat-icon>
+                    </mat-form-field>
+                    <mat-form-field class="col-12" appearance="fill">
+                        <mat-label>password</mat-label>
+                        <input matInput />
+                        <mat-icon matPrefix>lock</mat-icon>
+                    </mat-form-field>
+                    <div class="col-12 my-2">
+                        <button class="col-12 mx-auto" mat-raised-button color="primary">
+                            Login
+                        </button>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center my-2">
+                        <a href="#" class="text-center">
+                          Forgot password?
+                        </a>
+                      </div>
+                      <mat-divider class="my-4"></mat-divider>
+                    
+                    <div class="col-12 my-2">
+                        <button (click)="openDialog()" class="col-12 mx-auto" mat-stroked-button color="primary">
+                            Register
+                        </button>
+                    </div>
+                </mat-card-content>
+
+            </mat-card>
+        </div>
+    </div>
+</div>

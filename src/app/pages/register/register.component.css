@@ -1,0 +1,17 @@
+
+
+@media(min-width: 550px) and (min-height: 700px){
+    mat-card{
+        width: 500px;
+        height:auto;
+    }
+}
+
+
+@media(max-width: 550px){
+    mat-card{
+        max-height: 500px; /* Set the desired height here */
+        overflow-y: auto;
+    }
+}
+

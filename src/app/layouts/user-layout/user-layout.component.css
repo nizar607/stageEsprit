@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200&family=Roboto:wght@100&display=swap');
 
 .mat-toolbar{
-    background-color: rgb(255, 255, 255);
+    background-color: transparent;
     color: rgb(55, 55, 55);
   }
   .mat-button{

@@ -25,6 +25,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatStepperModule} from '@angular/material/stepper';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+
 
 
 @NgModule({
@@ -55,6 +57,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatProgressBarModule,
     MatPaginatorModule,
     MatStepperModule,
+    MatButtonToggleModule
   ]
 })
 export class CompanyLayoutModule { }

@@ -18,16 +18,26 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatCheckboxModule } from '@angular/material/checkbox'; 
 
 // pages
 import { UserLayoutComponent } from './user-layout.component';
 import { OfferComponent } from 'src/app/pages/offer/offer.component';
-
+import { OfferFormComponent } from 'src/app/pages/offer-form/offer-form.component';
+import { OfferMobileComponent } from 'src/app/pages/offer-mobile/offer-mobile.component';
+import { UserFormComponent } from 'src/app/pages/user-form/user-form.component';
+import { ProfilComponent } from 'src/app/pages/profil/profil.component';
 
 @NgModule({
   declarations: [
     UserLayoutComponent,
-    OfferComponent
+    OfferComponent,
+    OfferFormComponent,
+    OfferMobileComponent,
+    UserFormComponent,
+    ProfilComponent,
   ],
   imports: [
     CommonModule,
@@ -47,7 +57,10 @@ import { OfferComponent } from 'src/app/pages/offer/offer.component';
     MatExpansionModule,
     MatMenuModule,
     MatProgressBarModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatButtonToggleModule,
+    MatStepperModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [UserLayoutComponent]

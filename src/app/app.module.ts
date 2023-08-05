@@ -7,9 +7,12 @@ import { AuthLayoutModule } from './layouts/auth-layout/auth-layout.module';
 import { UserLayoutModule } from './layouts/user-layout/user-layout.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CompanyLayoutModule } from './layouts/company-layout/company-layout.module';
-import { FormsModule } from '@angular/forms';
-import { AngularEditorModule } from '@kolkov/angular-editor';
-import { HttpClientModule} from '@angular/common/http';
+import { ProfilComponent } from './pages/profil/profil.component';
+
+//import { FormsModule } from '@angular/forms';
+//import { AngularEditorModule } from '@kolkov/angular-editor';
+//import { HttpClientModule} from '@angular/common/http';
+
 
 // import { MatToolbarModule } from '@angular/material/toolbar';
 // import { MatButtonModule } from '@angular/material/button';
@@ -38,7 +41,6 @@ import { HttpClientModule} from '@angular/common/http';
     UserLayoutModule,
     CompanyLayoutModule,
     BrowserAnimationsModule,
-
     // MatToolbarModule,
     // MatButtonModule,
     // MatDividerModule,

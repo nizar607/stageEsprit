@@ -24,6 +24,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatCheckboxModule } from '@angular/material/checkbox'; // Import this for mat-checkbox
+
 
 @NgModule({
   declarations: [
@@ -51,7 +56,12 @@ import { MatRadioModule } from '@angular/material/radio';
     MatMenuModule,
     MatProgressBarModule,
     MatDialogModule,
-    MatRadioModule
+    MatRadioModule,
+    MatPaginatorModule,
+    MatButtonToggleModule,
+    MatStepperModule,
+    MatCheckboxModule,
+
   ]
 })
   export class AuthLayoutModule { }

@@ -1,4 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200&family=Roboto:wght@100&display=swap');
+::ng-deep .mat-horizontal-stepper-header-container .mat-step-header {
+    display: none;
+  }
+  mat-card{
+    border:none !important;
+    box-shadow: none !important;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200&family=Roboto:wght@100&display=swap');
 
 .mat-toolbar {
   background-color: transparent;
@@ -132,3 +139,5 @@ mat-drawer {
   transform: scaleX(1);
   /* Keep the line visible for the selected link */
 }
+
+

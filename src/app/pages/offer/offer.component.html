@@ -1,4 +1,5 @@
 <div class="container mb-4">
+
     <div class="row">
         <mat-form-field class="col-12 col-lg-5 mx-1" appearance="fill">
             <mat-label>city,state,zip code,or "remote"</mat-label>
@@ -182,8 +183,10 @@
 
 
 
-            <div *ngFor="let offer of paginatedOffers;" class="container p-4 border border-1 rounded bg-white my-3"
-                style="border-color: rgb(187, 187, 187); box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);">
+            <div (click)="offerClick(i);" *ngFor="let offer of paginatedOffers;let i = index"
+                [class.selected]="selectedDiv === i + currentPage * pageSize  && !isMobile" (click)="onSelectDiv(i)"
+                class="container p-4 border border-1 rounded bg-white my-3"
+                style="border-color: rgb(187, 187, 187); box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); cursor:pointer;">
                 <div class="row">
                     <h2 class="col-auto">
                         {{offer.title}}
@@ -251,12 +254,10 @@
                     Posted 3 days ago
                 </span>
             </div>
-            
-            <mat-paginator [length]="offers.length"
-            [pageSize]="pageSize"
-            [pageSizeOptions]="[5, 10, 25, 100]"
-            (page)="onPageChange($event)">
-        </mat-paginator>
+
+            <mat-paginator [length]="offers.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]"
+                (page)="onPageChange($event)">
+            </mat-paginator>
 
 
 
@@ -266,18 +267,19 @@
         <div class="col-6 my-3 d-none d-lg-block">
             <mat-card class="example-card job-description">
                 <mat-card-header>
-                    <mat-card-title>Jr JavaScript Developer</mat-card-title>
+                    <mat-card-title>{{currentOffer.title}}</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
                     <div class="row">
                         <a href="#" class="col-auto">
-                            PrimePay, LLC
+                            {{currentOffer.company}}
                             <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </a>
 
                         <div class="col-auto ms-auto stars-icons">
-                            <span *ngFor="let i of [1, 2, 3, 4, 5]" class="star-icon">
-                                <mat-icon class="stars">{{ 3 >= i ? 'star' : 'star_border' }}</mat-icon>
+                            <span *ngFor="let i of [1,2,3,4,5]" class="star-icon">
+                                <mat-icon class="stars">{{ currentOffer.rating >= i ? 'star' : 'star_border'
+                                    }}</mat-icon>
                             </span>
                         </div>
                         <a href="#" class="col-auto">
@@ -287,18 +289,19 @@
                     </div>
                     <div class="row my-3">
                         <span class="col-12" style="color: rgb(115, 115, 115);">
-                            Remote
+                            {{currentOffer.location}}
                         </span>
                         <span class="my-2 col-12">
-                            $90,000 - $100,000 a year
+                            {{ currentOffer.salary }} a year
                         </span>
                     </div>
                     <div class="row">
-                        <button class="col-11 col-lg-auto  mx-lg-2" mat-raised-button color="primary">
+                        <button (click)="openDialog()" class="col-11 col-lg-auto  mx-lg-2" mat-raised-button
+                            color="primary">
                             Apply on company site
                             <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </button>
-                        <button class="col-11 col-lg-auto  mx-lg-2 favorite-hide" mat-raised-button color="primary">
+                        <button mat-raised-button class="col-11 col-lg-auto  mx-lg-2 favorite-hide" color="primary">
                             <i class="far fa-bookmark"></i>
                         </button>
 

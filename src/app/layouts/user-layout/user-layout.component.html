@@ -103,17 +103,15 @@
     <mat-drawer-content>
         <mat-toolbar color="primary" style="height: 55px; margin-top:10px;">
             <a href="#">
-                <img id="esprit" class="split ms-1" src="/assets/img/Logo_ESPRIT_Ariana-removebg-preview.png" alt="ESPRIT">
+                <img id="esprit" class="split ms-1" src="/assets/img/Logo_ESPRIT_Ariana-removebg-preview.png"
+                    alt="ESPRIT">
             </a>
             <div class="spacer"></div>
-            <div class="a-container split">
-                <a class="anchor-tag d-none d-lg-flex" mat-button routerLink="/users">Find jobs</a>
-            </div>
-            <div class="a-containe split">
-                <a class="anchor-tag d-none d-lg-flex" mat-button routerLink="/add">Company reviews</a>
-            </div>
-            <div class="a-container split">
-                <a class="anchor-tag d-none d-lg-flex" mat-button routerLink="/">Find salaries</a>
+
+            <div class="a-container split" *ngFor="let link of navLinks;let i = index">
+                <a (click)="selectLink(i)" class="anchor-tag d-none d-lg-flex" [class.selected]="i === selectedLink" mat-button>
+                    {{link}}
+                </a>
             </div>
 
             <div class="nav-right ms-auto">

@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class CompanyLayoutComponent {
 
+  selectedLink = 0;
+  navLinks = [
+    "Find jobs",
+    "Company reviews",
+    "Find salaries"
+  ];
+  selectLink(index: number) {
+    this.selectedLink = index;
+  }
+  
 }

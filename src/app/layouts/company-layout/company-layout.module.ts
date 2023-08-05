@@ -7,6 +7,7 @@ import { CompanyLayoutComponent } from './company-layout.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { HttpClientModule } from '@angular/common/http';
 import { RecruitComponent } from 'src/app/pages/recruit/recruit.component';
+import { CompanyFormComponent } from 'src/app/pages/company-form/company-form.component';
 
 // angular material
 import { MatButtonModule } from '@angular/material/button';
@@ -26,17 +27,22 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox'; 
+
+
 
 
 
 @NgModule({
   declarations: [
     CompanyLayoutComponent,
-    RecruitComponent
+    RecruitComponent,
+    CompanyFormComponent
   ],
   imports: [
     CommonModule,
     CompanyLayoutRoutingModule,
+    
     AngularEditorModule,
     FormsModule,
     HttpClientModule,
@@ -57,7 +63,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatProgressBarModule,
     MatPaginatorModule,
     MatStepperModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatCheckboxModule
   ]
 })
 export class CompanyLayoutModule { }

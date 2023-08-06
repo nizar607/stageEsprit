@@ -1,0 +1,22 @@
+
+
+@media(max-width:500px){
+    #name {
+        font-size: 25px;
+    }
+    .container{
+        width: 80% !important;
+    }
+}
+
+@media(min-width:550px){
+    #name {
+        font-size: 35px;
+    }
+
+}
+
+hr{
+    height: 1px;
+}
+

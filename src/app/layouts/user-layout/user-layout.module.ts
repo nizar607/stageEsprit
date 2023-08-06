@@ -20,8 +20,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatStepperModule } from '@angular/material/stepper';
-import { MatCheckboxModule } from '@angular/material/checkbox'; 
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 // pages
 import { UserLayoutComponent } from './user-layout.component';
 import { OfferComponent } from 'src/app/pages/offer/offer.component';
@@ -37,7 +38,7 @@ import { ProfilComponent } from 'src/app/pages/profil/profil.component';
     OfferFormComponent,
     OfferMobileComponent,
     UserFormComponent,
-    ProfilComponent,
+    ProfilComponent
   ],
   imports: [
     CommonModule,
@@ -60,7 +61,9 @@ import { ProfilComponent } from 'src/app/pages/profil/profil.component';
     MatPaginatorModule,
     MatButtonToggleModule,
     MatStepperModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatAutocompleteModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [UserLayoutComponent]

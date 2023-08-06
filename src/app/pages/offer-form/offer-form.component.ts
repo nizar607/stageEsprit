@@ -6,10 +6,7 @@ import { FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angu
   styleUrls: ['./offer-form.component.css']
 })
 export class OfferFormComponent {
-  ecoles = [
-    "Esprit Buisiness",
-    "Esprit Ecole Ingénieur",
-  ];
+
   firstFormGroup = this._formBuilder.group({
     //firstCtrl: ['', Validators.required],
   });

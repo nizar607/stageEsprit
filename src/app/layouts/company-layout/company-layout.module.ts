@@ -56,8 +56,6 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatPaginatorModule,
     MatButtonToggleModule,
     MatStepperModule
-
-    
   ]
 })
 export class CompanyLayoutModule { }

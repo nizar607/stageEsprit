@@ -3,6 +3,8 @@
 .mat-toolbar {
   background-color: transparent;
   color: rgb(55, 55, 55);
+  height: 55px;
+  margin-top:10px;
 }
 
 .mat-button {
@@ -132,3 +134,4 @@ mat-drawer {
   transform: scaleX(1);
   /* Keep the line visible for the selected link */
 }
+

@@ -7,7 +7,6 @@ import { AuthLayoutModule } from './layouts/auth-layout/auth-layout.module';
 import { UserLayoutModule } from './layouts/user-layout/user-layout.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CompanyLayoutModule } from './layouts/company-layout/company-layout.module';
-import { ProfilComponent } from './pages/profil/profil.component';
 
 //import { FormsModule } from '@angular/forms';
 //import { AngularEditorModule } from '@kolkov/angular-editor';

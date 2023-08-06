@@ -48,30 +48,7 @@
                     </div>
                 </form>
             </mat-step>
-            <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
-                <form [formGroup]="secondFormGroup">
-                    <div class="row">
 
-                        <h4>je suis un etuidant(e) de:</h4>
-                        <mat-form-field class="col-12">
-                            <mat-label>Ecole</mat-label>
-                            <mat-select>
-                                <mat-option *ngFor="let ecole of ecoles" [value]="ecole">
-                                    {{ecole}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        <button mat-button color="primary">
-                            Upload your resume
-                            <mat-icon>get_app</mat-icon>
-                        </button>
-                    </div>
-                    <div class="row">
-                        <button class="col-1 ms-auto" mat-button matStepperPrevious>Back</button>
-                        <button class="col-1" mat-button matStepperNext>Next</button>
-                    </div>
-                </form>
-            </mat-step>
             <mat-step [stepControl]="secondFormGroup" label="Additional Questions">
                 <form [formGroup]="secondFormGroup">
                     <div class="row">

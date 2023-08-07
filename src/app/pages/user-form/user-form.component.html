@@ -35,7 +35,7 @@
                         <input hidden (change)="onFileSelected($event)" #fileInput type="file">
 
 
-                        <div *ngIf="file" class="container p-4 w-50 border border-grey rounded-2">
+                        <div *ngIf="file" class="container p-4 w-75 border border-grey rounded-2">
                             <div class="row">
                                 <div *ngIf="keepSpinning" class="col">
                                     <mat-spinner></mat-spinner>
@@ -91,7 +91,7 @@
                         <mat-form-field class="col-12" appearance="fill">
                             <input matInput placeholder="Enter Email" [value]="userInfo.email">
                         </mat-form-field>
-                        
+
                         <h4>First name*</h4>
                         <mat-form-field class="col-12" appearance="fill">
                             <input matInput placeholder="Enter first name" [value]="userInfo.firstName">
@@ -199,11 +199,10 @@
                     <div class="row mt-4">
                         <h1>Add education</h1>
 
-                        <div class="row border border-dark rounded p-3 w-75 mx-auto">
+                        <div class="row border border-dark rounded p-3 w-100 mx-auto">
                             <div class="col-auto">
                                 <h3><b> Business intelligence in ESB</b></h3>
                                 <p>
-
                                     ddasc - Arizona<br>
                                     September 2004 to October 2018
                                 </p>

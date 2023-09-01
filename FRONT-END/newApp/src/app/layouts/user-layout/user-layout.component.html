@@ -1,0 +1,61 @@
+<mat-drawer-container class="example-container" [hasBackdrop]="true">
+    <mat-drawer #drawer [mode]="'over'" position="end">
+        <app-user-nav></app-user-nav>
+    </mat-drawer>
+    
+    <mat-drawer-content>
+        <mat-toolbar color="primary">
+            <a href="#">
+                <img id="esprit" class="split ms-1" src="/assets/img/Logo_ESPRIT_Ariana-removebg-preview.png"
+                    alt="ESPRIT">
+            </a>
+            <div class="spacer"></div>
+
+            <div class="a-container split" *ngFor="let link of navLinks;let i = index">
+                <a (click)="selectLink(i)" class="anchor-tag d-none d-lg-flex" [class.selected]="i === selectedLink" mat-button>
+                    {{link}}
+                </a>
+            </div>
+
+            <div class="nav-right ms-auto">
+
+                <div id="comment" class="a-container split2 ms-1">
+                    <a class="anchor-tag" mat-button routerLink="/users">
+                        <i class="fa fa-comment nav-icons"></i>
+                    </a>
+                </div>
+
+                <div id="bell" class="a-containe split2 ms-1">
+                    <div id="bell-filler"></div>
+                    <a class="anchor-tag" mat-button routerLink="/add">
+                        <i class="fa fa-bell nav-icons"></i>
+                    </a>
+                </div>
+
+                <div id="user" class="a-container split2 ms-sm-1 d-none d-md-flex">
+                    <a class="anchor-tag" mat-button routerLink="/">
+                        <i class="fa fa-user nav-icons" aria-hidden="true"></i>
+                    </a>
+                </div>
+
+            </div>
+            <div class="vertical-divider d-none d-md-flex"></div>
+
+            <div id="post-job" class="a-container split2 mx-2">
+                <a class="anchor-tag d-none d-lg-flex" mat-button routerLink="/">
+                    Employers / Post job
+                </a>
+            </div>
+
+            <button (click)="drawer.toggle()" class="d-flex d-lg-none" mat-icon-button color="dark"
+                aria-label="Example icon button with a menu icon">
+                <mat-icon>menu</mat-icon>
+            </button>
+
+        </mat-toolbar>
+        <hr>
+
+        <router-outlet></router-outlet>
+
+    </mat-drawer-content>
+</mat-drawer-container>

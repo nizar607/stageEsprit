@@ -1,0 +1,58 @@
+.card-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    font-weight: bolder;
+    color: #999999;
+}
+
+.since {
+    color: #999999;
+    font-size: 1rem;
+}
+
+.percentage {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #495057;
+}
+
+.card-logo {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: linear-gradient(10deg, #ff3300 60%, #ff0000);
+    display: flex;
+    justify-content: center;
+
+}
+
+.card-logo2 {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: linear-gradient(10deg, #0084ff 60%, #0080ff);
+    display: flex;
+    justify-content: center;
+
+}
+
+.card-logo3 {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    /*background: linear-gradient(10deg, #ffb700 60%, #ffcc00);*/
+    background: linear-gradient(10deg, #21cc88 60%, #02c26f);
+    display: flex;
+    justify-content: center;
+
+}

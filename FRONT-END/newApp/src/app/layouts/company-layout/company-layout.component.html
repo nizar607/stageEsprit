@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="col-12 col-lg-auto my-auto ms-auto">
-                        <button class="col-12" id="follow" mat-flat-button color="primary" (click)="openDialog()">
+                        <button class="col-12" id="follow" mat-flat-button color="primary" routerLink="/recruit" (click)="openDialog()">
                             Add a job
                         </button>
                     </div>
@@ -59,19 +59,25 @@
 
                 
                 <input routerLink="/company/about" id="tab0" type="radio" name="tabs" disabled>
-                <label class="tab0" for="tab0" style="width: 33%;"></label>
+                <label class="tab0" for="tab0" style="width: 25%;"></label>
 
 
 
 
-                <input routerLink="/company/about" id="tab1" type="radio" name="tabs" checked>
-                <label class="" for="tab1">About</label>
+                <input routerLink="/company/about" id="tab4" type="radio" name="tabs">
+                <label class="" for="tab4">About</label>
+
+
 
                 <input routerLink="/company/jobs" id="tab2" type="radio" name="tabs">
                 <label class="" for="tab2">Jobs</label>
 
                 <input routerLink="/company/reviews" id="tab3" type="radio" name="tabs">
                 <label class="" for="tab3">Reviews</label>
+
+                <input routerLink="/company/recruit" id="tab1" type="radio" name="tabs" checked>
+                <label class="" for="tab1">Recruit</label>
+
 
 
                 <section id="content1">

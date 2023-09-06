@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AccountService } from '../../_services/account.service';
 
 @Component({
   selector: 'app-user-layout',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-layout.component.css']
 })
 export class UserLayoutComponent {
+  constructor(private accountService :AccountService ) { }
+
   selectedLink = 0;
   navLinks = [
     "Find jobs",
@@ -23,4 +26,9 @@ export class UserLayoutComponent {
   close(){
     
   }
+
+  logout(){
+    this.accountService.logout();
+  }
+
 }

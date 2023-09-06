@@ -165,7 +165,7 @@
         <h1>Are you sure you want to delete?</h1>
         <div class="row">
             <mat-dialog-actions class="mat-dialog-actions">
-                <button mat-stroked-button class="col-auto ms-auto" color="warn" (click)="deleteJob()">Delete</button>
+                <button mat-stroked-button mat-dialog-close class="col-auto ms-auto" color="warn" (click)="deleteJob()" routerLink="/jobs">Delete</button>
                 <button mat-button mat-dialog-close color="primary">Cancel</button>
               </mat-dialog-actions>
         </div>

@@ -27,7 +27,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatStepperModule } from '@angular/material/stepper';
-import { MatCheckboxModule } from '@angular/material/checkbox'; // Import this for mat-checkbox
+import { MatCheckboxModule } from '@angular/material/checkbox'; 
 
 
 @NgModule({

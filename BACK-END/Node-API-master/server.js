@@ -1,16 +1,115 @@
+require("dotenv").config();
 const express = require('express')
 const mongoose = require('mongoose')
 const Offer = require('./models/offerModel')
-const app = express()
+const app = express();
 const cors = require('cors');
+const multer = require('multer');
+const PDFParser = require('pdf-parse');
+const axios = require('axios');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const User = require("./models/user");
+const database = require("./config/database");
+
+
+
+
+
+
+
 
 const allowedOrigins = ['http://localhost:4200'];
+const upload = multer();
 app.use(cors());
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 //routes
+
+// Register
+app.post("/register", async (req, res) => {
+    try {
+        const { firstName, lastName,type, email, password } = req.body;
+
+        if (!email || !password || !firstName || !lastName) {
+            return res.status(400).json({ error: "All input is required" });
+        }
+
+        const existingUser = await User.findOne({ email });
+
+        if (existingUser) {
+            return res.status(409).json({ error: "User Already Exists. Please Login" });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const user = await User.create({
+            firstName,
+            lastName,
+            type,
+            email: email.toLowerCase(),
+            password: hashedPassword,
+        });
+
+        const token = jwt.sign(
+            { user_id: user._id, email },
+            process.env.TOKEN_SECRET, // Rename TOKEN_KEY to TOKEN_SECRET
+            { expiresIn: "2h" }
+        );
+
+        user.token = token;
+        await user.save();
+
+        res.status(201).json(user);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+// Login
+app.post("/login", async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        if (!email || !password) {
+            return res.status(400).json({ error: "All input is required" });
+        }
+
+        const user = await User.findOne({ email });
+
+
+        if (user && await bcrypt.compare(password, user.password)) {
+            const token = jwt.sign(
+                { user_id: user._id, email },
+                process.env.TOKEN_SECRET,
+                { expiresIn: "2h" }
+            );
+
+            user.token = token;
+            await user.save();
+
+            res.status(200).json(user);
+        } else {
+            res.status(400).json({ error: "Invalid Credentials" });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+//get users
+app.get('/users', async(req, res) => {
+    try {
+        const users = await User.find({});
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+})
 
 app.get('/', (req, res) => {
     res.send('Hello NODE API')
@@ -85,6 +184,47 @@ app.delete('/offers/:id', async(req, res) =>{
     }
 })
 
+app.post('/upload', upload.single('resume'), async (req, res) => {
+  if (!req.file) {
+    return res.status(400).send('No file uploaded.');
+  }
+
+  const pdfData = req.file.buffer; // File buffer from multer
+
+  try {
+    const data = await PDFParser(pdfData);
+    const extractedText = data.text; // Extracted text from PDF
+    
+    const options = {
+      method: 'POST',
+      url: 'https://chatgpt-gpt4-ai-chatbot.p.rapidapi.com/ask',
+      headers: {
+        'content-type': 'application/json',
+        'X-RapidAPI-Key': 'c02912c64amsh98b79271f633632p1dd529jsnf67070343090',
+        'X-RapidAPI-Host': 'chatgpt-gpt4-ai-chatbot.p.rapidapi.com'
+      },
+      data: {
+        query: `this is a resume transform it into a json like this: {
+            "firstName": "",
+            "lastName": "",
+            "email": "",
+            "phone": "",
+            "streetAddress": "",
+            "postalCode": "",
+            "city": ""
+          } ` + extractedText
+      }
+    };
+
+    const response = await axios.request(options);
+    console.log(response.data);
+
+    res.json({ extractedText, aiResponse: response.data });
+  } catch (error) {
+    console.error('Error while parsing PDF or making API request:', error);
+    res.status(500).send('Error processing PDF or making API request.');
+  }
+});
 
 mongoose.set("strictQuery", false)
 mongoose.
@@ -97,3 +237,32 @@ connect('mongodb+srv://admin:admin@fiddod.xnchtzy.mongodb.net/?retryWrites=true&
 }).catch((error) => {
     console.log(error)
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

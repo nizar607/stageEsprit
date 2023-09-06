@@ -1,12 +1,21 @@
 import { NgModule } from '@angular/core';
+import { HomeComponent } from './home';
+import { AuthGuard } from './_helpers';
 import { RouterModule, Routes } from '@angular/router';
+
+const accountModule = () => import('./account/account.module').then(x => x.AccountModule);
+const usersModule = () => import('./users/users.module').then(x => x.UsersModule);
+
 
 const routes: Routes = [
   //{ path: '', redirectTo: 'user', pathMatch: 'full' },
-  { path: '', redirectTo: 'auth/user-form', pathMatch: 'full' },
-  { path: 'company', loadChildren: () => import('../app/layouts/company-layout/company-layout.module').then(c => c.CompanyLayoutModule) },
-  { path: 'user', loadChildren: () => import('../app/layouts/user-layout/user-layout.module').then(m => m.UserLayoutModule) },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard], pathMatch: 'full' },
+  { path: 'users', loadChildren: usersModule, canActivate: [AuthGuard] },
+  { path: 'account', loadChildren: accountModule },
+  { path: 'company', loadChildren: () => import('../app/layouts/company-layout/company-layout.module').then(c => c.CompanyLayoutModule) ,canActivate: [AuthGuard] },
+  { path: 'user', loadChildren: () => import('../app/layouts/user-layout/user-layout.module').then(m => m.UserLayoutModule) , canActivate: [AuthGuard] },
   { path: 'auth', loadChildren: () => import('../app/layouts/auth-layout/auth-layout.module').then(m => m.AuthLayoutModule) },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

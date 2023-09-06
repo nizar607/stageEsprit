@@ -59,4 +59,6 @@ export class CompanyLayoutComponent {
     const dialogRef = this.dialog.open(RecruitComponent);
 
   }
+
+
 }

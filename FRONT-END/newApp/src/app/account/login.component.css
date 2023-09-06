@@ -1,0 +1,22 @@
+
+@media(min-width: 320px){
+    #esprit-logo{
+        width: 300px;
+    }
+}
+
+@media(max-width: 319px){
+    #esprit-logo{
+        width: 150px;
+    }
+}
+
+
+.container-fluid{
+    background-color: rgb(242, 242, 242);
+}
+
+mat-card{
+    border-radius: 6px;
+}
+

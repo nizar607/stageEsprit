@@ -1,5 +1,5 @@
-import { Component , OnInit} from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { OfferService } from 'src/app/services/offer.service';
 
@@ -67,23 +67,33 @@ export class RecruitComponent {
       },
     ],
   };
-  
+
 
   htmlContent!: string;
 
   selectedSchedules: string[] = [];
   selectedTypes: string[] = [];
 
-  firstFormGroup !: any; 
-  
-  secondFormGroup !:any;
+  firstFormGroup = this._formBuilder.group({
+    title: ['', Validators.required],
+    people_number: ['', [Validators.required]],
+    option: ['', Validators.required]
+  });
 
-  thirdFormGroup !:any;
+  secondFormGroup = this._formBuilder.group({
+    insights: ['', Validators.required],
+    details: ['', [Validators.required]],
+  });
+
+  thirdFormGroup = this._formBuilder.group({
+    minSalary: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
+    maxSalary: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
+  });
 
   isLinear = true;
 
 
-   schedule: string[] = [
+  schedule: string[] = [
     "4 hour shift",
     "8 hour shift",
     "10 hour shift",
@@ -106,14 +116,14 @@ export class RecruitComponent {
 
 
   selectedOptions: string[] = [];
-  
-  toggleIcon(option: string,i:number): void {
+
+  toggleIcon(option: string, i: number): void {
     const index = this.selectedOptions.indexOf(option);
 
-    if(this.offer.type.includes(option)){
-      console.log(this.offer.type.includes(option),"index ",i);
+    if (this.offer.type.includes(option)) {
+      console.log(this.offer.type.includes(option), "index ", i);
       this.offer.type.splice(i, 1);
-    }else{
+    } else {
       this.offer.type.push(option);
     }
 
@@ -123,23 +133,23 @@ export class RecruitComponent {
       this.selectedOptions.splice(index, 1);
     }
 
-    console.log( "here types ", this.offer.type);
+    console.log("here types ", this.offer.type);
   }
-  
+
   showCheck(option: string): boolean {
     return this.selectedOptions.includes(option);
   }
 
 
   selectedOptions2: string[] = [];
-  
-  toggleIcon2(option: string,i:number): void {
+
+  toggleIcon2(option: string, i: number): void {
     const index = this.selectedOptions2.indexOf(option);
 
 
-    if(this.offer.schedules.includes(option)){
+    if (this.offer.schedules.includes(option)) {
       this.offer.schedules.splice(i, 1);
-    }else{
+    } else {
       this.offer.schedules.push(option);
     }
 
@@ -150,66 +160,53 @@ export class RecruitComponent {
       this.selectedOptions2.splice(index, 1);
     }
 
-    console.log( "here schedule ", this.offer.schedules);
+    console.log("here schedule ", this.offer.schedules);
   }
-  
+
   showCheck2(option: string): boolean {
     return this.selectedOptions2.includes(option);
   }
 
-ngOnInit() {
-  this.firstFormGroup = this._formBuilder.group({
-    title: ['', Validators.required],
-    people_number: ['', [Validators.required]],
-    option: ['', Validators.required]
-});
-  this.secondFormGroup = this._formBuilder.group({
-    insights: ['', Validators.required],
-    details: ['', [Validators.required]],
-  });
+  ngOnInit() {
 
-  this.thirdFormGroup = this._formBuilder.group({
-    minSalary: ['', [Validators.required,Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
-    maxSalary: ['', [Validators.required,Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
-  });
-}
-  constructor(private _formBuilder: FormBuilder,private OfferService:OfferService) {
+  }
+  constructor(private _formBuilder: FormBuilder, private OfferService: OfferService) {
 
 
   }
-  deleteDetail(index:number){
-    this.offer.job_details.splice(index,1);  
+  deleteDetail(index: number) {
+    this.offer.job_details.splice(index, 1);
   }
 
-  deleteInsight(index:number){
-    this.offer.profile_insights.splice(index,1);  
+  deleteInsight(index: number) {
+    this.offer.profile_insights.splice(index, 1);
   }
 
-  addInsight(value:string){
+  addInsight(value: string) {
     this.offer.profile_insights.push(value);
   }
 
-  addDetail(value:string){
+  addDetail(value: string) {
     this.offer.job_details.push(value);
   }
 
-  SubmitFirst(){
-    
-  }
-
-  SubmitSecond(){
+  SubmitFirst() {
 
   }
 
-  SubmitThird(){
+  SubmitSecond() {
 
   }
 
-  showEditor(s : any){
+  SubmitThird() {
+
+  }
+
+  showEditor(s: any) {
     console.log(s.textArea.nativeElement.innerHTML);
   }
 
-  addOffer(editor:any){
+  addOffer(editor: any) {
     this.offer.title = this.firstFormGroup.value.title;
     this.offer.number_of_people = this.firstFormGroup.value.people_number;
     this.offer.description = this.firstFormGroup.value.option;
@@ -220,7 +217,7 @@ ngOnInit() {
     this.offer.rating = 0;
     this.offer.details = this.secondFormGroup.value.details;
     this.offer.insights = this.secondFormGroup.value.insights;
-    
+
     console.log(this.offer);
 
     this.OfferService.createOffer(this.offer).subscribe(data => {
@@ -234,5 +231,5 @@ ngOnInit() {
 
 
 
-  
+
 }

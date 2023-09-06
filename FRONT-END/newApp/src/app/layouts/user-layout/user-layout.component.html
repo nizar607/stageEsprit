@@ -33,7 +33,7 @@
                 </div>
 
                 <div id="user" class="a-container split2 ms-sm-1 d-none d-md-flex">
-                    <a class="anchor-tag" mat-button routerLink="/">
+                    <a class="anchor-tag" mat-button routerLink="/profil">
                         <i class="fa fa-user nav-icons" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -42,8 +42,8 @@
             <div class="vertical-divider d-none d-md-flex"></div>
 
             <div id="post-job" class="a-container split2 mx-2">
-                <a class="anchor-tag d-none d-lg-flex" mat-button routerLink="/">
-                    Employers / Post job
+                <a class="anchor-tag d-none d-lg-flex" mat-button (click)="logout()">
+                    Log out
                 </a>
             </div>
 

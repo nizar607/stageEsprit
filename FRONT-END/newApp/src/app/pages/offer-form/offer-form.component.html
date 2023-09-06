@@ -3,7 +3,7 @@
     <mat-card-header>
         <mat-card-title>
             <h1>
-                Apply to Samsung
+                Apply to this job
             </h1>
         </mat-card-title>
     </mat-card-header>
@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-auto">
                             <b>
-                                Mohamed Mokhtar Hadded
+                                Nizar ouertani
                             </b>
                             <br>
                             Software engineer
@@ -35,52 +35,81 @@
 
                         <mat-form-field class="col-12">
                             <mat-label>Email</mat-label>
-                            <input matInput placeholder="user@gmail.com" value="Mokhtar.hadded@esprit.tn">
+                            <input matInput placeholder="user@gmail.com" value="nizar@gmail.com">
                         </mat-form-field>
 
                         <mat-form-field class="col-12">
                             <mat-label>phone</mat-label>
-                            <input matInput placeholder="enter phone number" value="+216 20503020">
+                            <input matInput placeholder="enter phone number" value="+216 20504096">
                         </mat-form-field>
                     </div>
+
                     <div class="row">
                         <button class="col-1 ms-auto" mat-button matStepperNext>Next</button>
                     </div>
                 </form>
             </mat-step>
 
-            <mat-step [stepControl]="secondFormGroup" label="Additional Questions">
+            <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
                 <form [formGroup]="secondFormGroup">
-                    <div class="row">
+                    <div class="row mt-4">
+                        <h2>Upload Your Resume</h2>
+                        <p>Please upload your resume in PDF.</p>
 
-                        <h4>How many years of work experience do you have with Python (Programming Language)?</h4>
-
-
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="Enter the response here" value="">
-                        </mat-form-field>
-
-                        <h4>How many years of work experience do you have with JavaScript?</h4>
-
-
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="Enter the response here" value="">
-                        </mat-form-field>
-
-                        <h4>How many years of work experience do you have with SQL?</h4>
+                        <button class="col-12 my-3" type="button" color="primary" mat-raised-button (click)="fileInput.click()" >
+                            Upload your resume
+                            <mat-icon>get_app</mat-icon>
+                        </button>
+                        <input hidden (change)="onFileSelected($event)" #fileInput type="file">
 
 
-                        <mat-form-field class="col-12">
-                            <input matInput placeholder="Enter the response here" value="">
-                        </mat-form-field>
+                        <div *ngIf="file" class="container p-4 w-75 border border-grey rounded-2">
+                            <div class="row">
+                                <div *ngIf="keepSpinning" class="col">
+                                    <mat-spinner></mat-spinner>
+                                </div>
 
+                                <div *ngIf="!keepSpinning" class="col-auto">
+                                    <img src="/assets/img/logos/documentLogo.png" alt="document" style="width: 80px;">
+                                </div>
+                        
+                                <div *ngIf="!keepSpinning" class="col-auto my-auto">
+                                    <h4 style="margin-bottom: 0px;"> <b>{{file?.name}}</b> </h4>
+                                    <span class="text-muted">{{file?.lastModifiedDate | date:'short'}}</span>
+                                </div>
+                        
+                                <div *ngIf="!keepSpinning" class="col-auto ms-auto my-auto">
+                                    <button mat-icon-button [matMenuTriggerFor]="resumeMenu" aria-label="Example icon-button with a menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                    </button>
+                                    <mat-menu #resumeMenu="matMenu">
+                                        <button mat-menu-item>
+                                            <mat-icon>preview</mat-icon>
+                                            <span>Preview</span>
+                                        </button>
+                                        <button mat-menu-item color="primary">
+                                            <mat-icon>download</mat-icon>
+                                            <span>Download</span>
+                                        </button>
+                                        <button mat-menu-item class="text-danger">
+                                            <mat-icon color="warn">delete</mat-icon>
+                                            <span>Delete</span>
+                                        </button>
+                                    </mat-menu>
+                                </div>
+                        
+                        
+                        
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
-                        <button class="col-1 ms-auto" mat-button matStepperPrevious>Back</button>
-                        <button class="col-1" mat-button matStepperNext>Review</button>
+                        <button class="col-1 ms-auto" mat-button matStepperPrevious >Back</button>
+                        <button class="col-1" mat-button matStepperNext >Next</button>
                     </div>
                 </form>
             </mat-step>
+
             <mat-step>
                 <ng-template matStepLabel>Done</ng-template>
                 <p>You are now done.</p>
@@ -99,18 +128,15 @@
 
 <ng-template #successDialog>
     <mat-dialog-content class="dialog-content">
-      <div class="success-icon">
-        <mat-icon class="mat-success">check_circle</mat-icon>
-      </div>
-      <div class="success-message">
-        <h2 class="mat-title mat-primary">Success!</h2>
-        <p class="mat-body-1">Your submission was successful.</p>
-      </div>
+        <div class="success-icon">
+            <mat-icon class="mat-success">check_circle</mat-icon>
+        </div>
+        <div class="success-message">
+            <h2 class="mat-title mat-primary">Success!</h2>
+            <p class="mat-body-1">Your submission was successful.</p>
+        </div>
     </mat-dialog-content>
     <mat-dialog-actions class="mat-dialog-actions">
-      <button mat-button mat-dialog-close color="primary">Close</button>
+        <button mat-button mat-dialog-close color="primary">Close</button>
     </mat-dialog-actions>
-  </ng-template>
-  
-  
-  
+</ng-template>

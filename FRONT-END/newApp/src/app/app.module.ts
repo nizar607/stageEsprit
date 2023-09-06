@@ -9,33 +9,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CompanyLayoutModule } from './layouts/company-layout/company-layout.module';
 
 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
+import { fakeBackendProvider } from './_helpers';
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { AlertComponent } from './_components';
+import { HomeComponent } from './home';
 
 
-//import { FormsModule } from '@angular/forms';
-//import { AngularEditorModule } from '@kolkov/angular-editor';
-//import { HttpClientModule} from '@angular/common/http';
-
-
-// import { MatToolbarModule } from '@angular/material/toolbar';
-// import { MatButtonModule } from '@angular/material/button';
-// import { MatDividerModule } from '@angular/material/divider';
-// import { MatSelectModule } from '@angular/material/select';
-// import { MatFormFieldModule } from '@angular/material/form-field';
-// import { MatSidenavModule } from '@angular/material/sidenav';
-// import { MatIconModule } from '@angular/material/icon';
-// import { MatInputModule } from '@angular/material/input';
-// import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-// import { MatListModule } from '@angular/material/list';
-// import { MatExpansionModule } from '@angular/material/expansion';
-// import { MatCardModule } from '@angular/material/card';
-// import { MatMenuModule } from '@angular/material/menu';
-// import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AlertComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +34,8 @@ import { CompanyLayoutModule } from './layouts/company-layout/company-layout.mod
     UserLayoutModule,
     CompanyLayoutModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    MatButtonModule
     // MatToolbarModule,
     // MatButtonModule,
     // MatDividerModule,
@@ -61,7 +52,13 @@ import { CompanyLayoutModule } from './layouts/company-layout/company-layout.mod
     // MatMenuModule,
     // MatProgressBarModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+    // provider used to create fake backend
+    fakeBackendProvider
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

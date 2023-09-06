@@ -161,13 +161,14 @@ export class UserFormComponent {
         // Process the extracted data to fill form inputs programmatically
         console.log("here dude ", file.aiResponse.LLAMA);
         const regex = /(\}\s*)(\})*$/m;
-        const result = file.aiResponse.LLAMA.replace(regex, (match: any, group1: any, group2: any) => {
-          if (group2.length > 0) {
-            return group1; // Remove extra curly braces
-          } else {
-            return match; // Keep original match
-          }
-        });
+        // const result = file.aiResponse.LLAMA.replace(regex, (match: any, group1: any, group2: any) => {
+        //   if (group2.length > 0) {
+        //     return group1; // Remove extra curly braces
+        //   } else {
+        //     return match; // Keep original match
+        //   }
+        // });
+        const result = file.aiResponse.response;
         console.log(result);
 
         const jsonObject = JSON.parse(result);

@@ -7,6 +7,7 @@ import { AuthLayoutModule } from './layouts/auth-layout/auth-layout.module';
 import { UserLayoutModule } from './layouts/user-layout/user-layout.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CompanyLayoutModule } from './layouts/company-layout/company-layout.module';
+import { HomePageComponent } from './pages/home-page/home-page.component';
 
 
 
@@ -36,6 +37,7 @@ import { CompanyLayoutModule } from './layouts/company-layout/company-layout.mod
 @NgModule({
   declarations: [
     AppComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,

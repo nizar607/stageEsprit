@@ -1,0 +1,11 @@
+.signup{
+    background-color: white;
+    color: #0091e1;
+    font-weight: bold;
+    font-size:large;
+    border: 2.5px solid #0091e1;
+    margin-top: -2px;
+}
+.signup:hover{
+    color: #ffffff;
+}

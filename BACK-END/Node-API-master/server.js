@@ -24,14 +24,14 @@ const upload = multer();
 app.use(cors());
 
 app.use(express.json())
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({ extended: false }))
 
 //routes
 
 // Register
 app.post("/register", async (req, res) => {
     try {
-        const { firstName, lastName,type, email, password } = req.body;
+        const { firstName, lastName, type, email, password, phoneNumber, companyName } = req.body;
 
         if (!email || !password || !firstName || !lastName) {
             return res.status(400).json({ error: "All input is required" });
@@ -51,6 +51,8 @@ app.post("/register", async (req, res) => {
             type,
             email: email.toLowerCase(),
             password: hashedPassword,
+            phoneNumber,
+            companyName,
         });
 
         const token = jwt.sign(
@@ -62,7 +64,7 @@ app.post("/register", async (req, res) => {
         user.token = token;
         await user.save();
 
-        res.status(201).json(user);
+        res.status(200).json(user);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Internal Server Error" });
@@ -72,8 +74,9 @@ app.post("/register", async (req, res) => {
 // Login
 app.post("/login", async (req, res) => {
     try {
-        const { email, password } = req.body;
 
+        const { email, password } = req.body;
+        console.log(email, password);
         if (!email || !password) {
             return res.status(400).json({ error: "All input is required" });
         }
@@ -90,7 +93,7 @@ app.post("/login", async (req, res) => {
 
             user.token = token;
             await user.save();
-
+            console.log("user found");
             res.status(200).json(user);
         } else {
             res.status(400).json({ error: "Invalid Credentials" });
@@ -102,14 +105,73 @@ app.post("/login", async (req, res) => {
 });
 
 //get users
-app.get('/users', async(req, res) => {
+app.get('/users', async (req, res) => {
     try {
         const users = await User.find({});
         res.status(200).json(users);
     } catch (error) {
-        res.status(500).json({message: error.message})
+        res.status(500).json({ message: error.message })
     }
 })
+
+
+app.post('/token', async (req, res) => {
+    try {
+        const jwt = require('jsonwebtoken');
+
+        // Your JWT token
+        const token = req.body.token;
+
+        // Your JWT secret or public key (if applicable)
+        const secretOrPublicKey = 'mysecretkey';
+
+        try {
+            // Verify and decode the token
+            const decodedToken = jwt.verify(token, secretOrPublicKey);
+
+            // Check the token's expiration
+            const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
+            if (decodedToken.exp && decodedToken.exp > currentTime) {
+                console.log('Token is still valid.');
+                res.status(200).json({ valid: true });
+            } else {
+                console.log('Token has expired.');
+            }
+        } catch (error) {
+            res.status(500).json({ valid: false });
+        }
+
+    } catch (error) {
+        res.status(500).json({ valid: false })
+    }
+});
+
+
+
+//search offer
+app.post('/offers/search', async (req, res) => {
+    const { title, location } = req.body;
+    console.log(title, location);
+    if (title == undefined)
+        title = "";
+    if (location == undefined)
+        location = "";
+
+    try {
+        // Perform a MongoDB query to find matching jobs
+        const offers = await Offer.find({
+            $or: [
+                { title: { $regex: title, $options: 'i' } }, // Case-insensitive title search
+                { location: { $regex: location, $options: 'i' } }, // Case-insensitive location search
+            ],
+        });
+        console.log(offers);
+        res.json(offers);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred' });
+    }
+});
 
 app.get('/', (req, res) => {
     res.send('Hello NODE API')
@@ -119,92 +181,92 @@ app.get('/blog', (req, res) => {
     res.send('Hello Blog, My name is Devtamin')
 })
 
-app.get('/offers', async(req, res) => {
+app.get('/offers', async (req, res) => {
     try {
         const offers = await Offer.find({});
         res.status(200).json(offers);
     } catch (error) {
-        res.status(500).json({message: error.message})
+        res.status(500).json({ message: error.message })
     }
 })
 
-app.get('/offers/:id', async(req, res) =>{
+app.get('/offers/:id', async (req, res) => {
     try {
-        const {id} = req.params;
+        const { id } = req.params;
         const offer = await Offer.findById(id);
         res.status(200).json(offer);
     } catch (error) {
-        res.status(500).json({message: error.message})
+        res.status(500).json({ message: error.message })
     }
 })
 
 
-app.post('/offers', async(req, res) => {
+app.post('/offers', async (req, res) => {
     console.log(req.body);
     try {
         const offer = await Offer.create(req.body)
         res.status(200).json(offer);
-        
+
     } catch (error) {
         console.log(error.message);
-        res.status(500).json({message: error.message})
+        res.status(500).json({ message: error.message })
     }
 })
 
 // update a offer
-app.put('/offers/:id', async(req, res) => {
+app.put('/offers/:id', async (req, res) => {
     try {
-        const {id} = req.params;
+        const { id } = req.params;
         const offer = await Offer.findByIdAndUpdate(id, req.body);
         // we cannot find any offer in database
-        if(!offer){
-            return res.status(404).json({message: `cannot find any offer with ID ${id}`})
+        if (!offer) {
+            return res.status(404).json({ message: `cannot find any offer with ID ${id}` })
         }
         const updatedoffer = await offer.findById(id);
         res.status(200).json(updatedoffer);
-        
+
     } catch (error) {
-        res.status(500).json({message: error.message})
+        res.status(500).json({ message: error.message })
     }
 })
 
 // delete a offer
 
-app.delete('/offers/:id', async(req, res) =>{
+app.delete('/offers/:id', async (req, res) => {
     try {
-        const {id} = req.params;
+        const { id } = req.params;
         const offer = await Offer.findByIdAndDelete(id);
-        if(!offer){
-            return res.status(404).json({message: `cannot find any offer with ID ${id}`})
+        if (!offer) {
+            return res.status(404).json({ message: `cannot find any offer with ID ${id}` })
         }
         res.status(200).json(offer);
-        
+
     } catch (error) {
-        res.status(500).json({message: error.message})
+        res.status(500).json({ message: error.message })
     }
 })
 
 app.post('/upload', upload.single('resume'), async (req, res) => {
-  if (!req.file) {
-    return res.status(400).send('No file uploaded.');
-  }
+    if (!req.file) {
+        return res.status(400).send('No file uploaded.');
+    }
 
-  const pdfData = req.file.buffer; // File buffer from multer
+    const pdfData = req.file.buffer; // File buffer from multer
 
-  try {
-    const data = await PDFParser(pdfData);
-    const extractedText = data.text; // Extracted text from PDF
-    
-    const options = {
-      method: 'POST',
-      url: 'https://chatgpt-gpt4-ai-chatbot.p.rapidapi.com/ask',
-      headers: {
-        'content-type': 'application/json',
-        'X-RapidAPI-Key': 'c02912c64amsh98b79271f633632p1dd529jsnf67070343090',
-        'X-RapidAPI-Host': 'chatgpt-gpt4-ai-chatbot.p.rapidapi.com'
-      },
-      data: {
-        query: `this is a resume transform it into a json like this: {
+    try {
+        const data = await PDFParser(pdfData);
+        const extractedText = data.text; // Extracted text from PDF
+
+        const options = {
+            method: 'POST',
+            url: 'https://chatgpt-gpt4-ai-chatbot.p.rapidapi.com/ask',
+            headers: {
+                'content-type': 'application/json',
+                'X-RapidAPI-Key': 'c02912c64amsh98b79271f633632p1dd529jsnf67070343090',
+                'X-RapidAPI-Host': 'chatgpt-gpt4-ai-chatbot.p.rapidapi.com'
+            },
+            data: {
+                query: `this is a resume transform it into a json like this: {
             "firstName": "",
             "lastName": "",
             "email": "",
@@ -213,30 +275,30 @@ app.post('/upload', upload.single('resume'), async (req, res) => {
             "postalCode": "",
             "city": ""
           } ` + extractedText
-      }
-    };
+            }
+        };
 
-    const response = await axios.request(options);
-    console.log(response.data);
+        const response = await axios.request(options);
+        console.log(response.data);
 
-    res.json({ extractedText, aiResponse: response.data });
-  } catch (error) {
-    console.error('Error while parsing PDF or making API request:', error);
-    res.status(500).send('Error processing PDF or making API request.');
-  }
+        res.json({ extractedText, aiResponse: response.data });
+    } catch (error) {
+        console.error('Error while parsing PDF or making API request:', error);
+        res.status(500).send('Error processing PDF or making API request.');
+    }
 });
 
 mongoose.set("strictQuery", false)
 mongoose.
-connect('mongodb+srv://admin:admin@fiddod.xnchtzy.mongodb.net/?retryWrites=true&w=majority')
-.then(() => {
-    console.log('connected to MongoDB')
-    app.listen(3000, ()=> {
-        console.log(`Node API app is running on port 3000`)
-    });
-}).catch((error) => {
-    console.log(error)
-})
+    connect('mongodb+srv://admin:admin@fiddod.xnchtzy.mongodb.net/?retryWrites=true&w=majority')
+    .then(() => {
+        console.log('connected to MongoDB')
+        app.listen(3000, () => {
+            console.log(`Node API app is running on port 3000`)
+        });
+    }).catch((error) => {
+        console.log(error)
+    })
 
 
 

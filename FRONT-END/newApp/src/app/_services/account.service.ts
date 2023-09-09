@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { environment } from '../environments/environment';
 import { User } from '../_models';
+import { UserService } from '../services/user.service';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -14,7 +15,8 @@ export class AccountService {
 
     constructor(
         private router: Router,
-        private http: HttpClient
+        private http: HttpClient,
+        private userService: UserService
     ) {
         this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
         this.user = this.userSubject.asObservable();
@@ -37,12 +39,14 @@ export class AccountService {
     logout() {
         // remove user from local storage and set current user to null
         localStorage.removeItem('user');
+        localStorage.removeItem('token');
         this.userSubject.next(null);
-        this.router.navigate(['/account/login']);
+        this.router.navigate(['/auth/login']);
     }
 
     register(user: User) {
-        return this.http.post(`${environment.apiUrl}/users/register`, user);
+        return this.userService.register(user);
+        //return this.http.post(`${environment.apiUrl}/users/register`, user);
     }
 
     getAll() {

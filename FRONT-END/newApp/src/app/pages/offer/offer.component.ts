@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component ,ViewChild, ElementRef} from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { OfferFormComponent } from '../offer-form/offer-form.component';
@@ -32,6 +32,7 @@ export interface Offer {
 })
 export class OfferComponent {
   offers: Offer[] = [];
+  allOffers: Offer[] = [];
   pageSize = 5;
   currentPage = 0;
   paginatedOffers: any[] = [];
@@ -40,6 +41,9 @@ export class OfferComponent {
   selectedDiv!: number;
   currentOffer!: Offer ;
   currentDay:any;
+
+  @ViewChild('titleInput') titleInput!: ElementRef;
+  @ViewChild('locationInput') locationInput!: ElementRef;
 
   constructor(
     public dialog: MatDialog,
@@ -62,6 +66,7 @@ export class OfferComponent {
     this.offerService.getOffers().subscribe(data => {
       console.log("Complete data received: ", data);
       this.offers = data;
+      this.allOffers = data;
       this.currentOffer = this.offers[this.selectedDiv];
       this.totalOffers = this.offers.length;
       this.updatePagination();
@@ -108,6 +113,23 @@ export class OfferComponent {
       this.router.navigate(['/offer-mobile']);
       // this.router.navigate(['/offer-mobile', 3]); // the id of the offer is 3
     }
+  }
+
+  searchOffers(){
+    
+    if(this.titleInput.nativeElement.value == "" && this.locationInput.nativeElement.value == ""){
+      console.log("empty");
+      // this.offers = this.allOffers;
+      // this.updatePagination();
+      return;
+    }
+    console.log("searching",this.titleInput.nativeElement.value,this.locationInput.nativeElement.value);
+    this.offerService.searchOffers(this.titleInput.nativeElement.value, this.locationInput.nativeElement.value).subscribe(data => {
+      console.log("Complete data received: ", data);  
+      this.offers=data;
+      this.updatePagination();
+    });
+
   }
 
 }

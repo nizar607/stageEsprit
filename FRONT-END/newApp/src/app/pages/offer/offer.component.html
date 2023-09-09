@@ -4,17 +4,17 @@
         
         <mat-form-field class="col-12 col-lg-5 mx-1" appearance="fill">
             <mat-label>city,state,zip code,or "remote"</mat-label>
-            <input matInput />
+            <input matInput #locationInput/>
             <mat-icon matPrefix>location_on</mat-icon>
         </mat-form-field>
 
         <mat-form-field class="col-12 col-lg-5 mx-1" appearance="fill">
             <mat-label>Job title, keywords, or company</mat-label>
-            <input matInput />
+            <input matInput #titleInput/>
             <mat-icon matPrefix>search</mat-icon>
         </mat-form-field>
 
-        <button class="col-11 col-lg-1 search-button mx-lg-1" mat-raised-button color="primary">
+        <button class="col-11 col-lg-1 search-button mx-lg-1" mat-raised-button color="primary" (click)="searchOffers()">
             <mat-icon matPrefix>search</mat-icon>
             Search
         </button>
@@ -33,6 +33,7 @@
         <button mat-menu-item>Velvet worms</button>
         <button mat-menu-item>Horseshoe crabs</button>
     </mat-menu>
+
 
     <button class="option-button" mat-button [matMenuTriggerFor]="invertebrates">
         Remote <mat-icon>expand_more</mat-icon>

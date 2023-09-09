@@ -15,7 +15,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { fakeBackendProvider } from './_helpers';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AlertComponent } from './_components';
-import { HomeComponent } from './home';
+import { HomeComponent } from './pages/home/home.component';
 
 
 import { MatButtonModule } from '@angular/material/button';

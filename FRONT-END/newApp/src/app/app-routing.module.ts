@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HomeComponent } from './home';
+import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from './_helpers';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -9,7 +9,7 @@ const usersModule = () => import('./users/users.module').then(x => x.UsersModule
 
 const routes: Routes = [
   //{ path: '', redirectTo: 'user', pathMatch: 'full' },
-  { path: '', component: HomeComponent, canActivate: [AuthGuard], pathMatch: 'full' },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'users', loadChildren: usersModule, canActivate: [AuthGuard] },
   { path: 'account', loadChildren: accountModule },
   { path: 'company', loadChildren: () => import('../app/layouts/company-layout/company-layout.module').then(c => c.CompanyLayoutModule) ,canActivate: [AuthGuard] },

@@ -83,15 +83,12 @@
                                         <mat-icon>more_vert</mat-icon>
                                     </button>
                                     <mat-menu #resumeMenu="matMenu">
-                                        <button mat-menu-item>
+                                        <button mat-menu-item (click)="previewResume()">
                                             <mat-icon>preview</mat-icon>
                                             <span>Preview</span>
                                         </button>
-                                        <button mat-menu-item color="primary">
-                                            <mat-icon>download</mat-icon>
-                                            <span>Download</span>
-                                        </button>
-                                        <button mat-menu-item class="text-danger">
+
+                                        <button mat-menu-item class="text-danger" (click)="deleteResume()">
                                             <mat-icon color="warn">delete</mat-icon>
                                             <span>Delete</span>
                                         </button>

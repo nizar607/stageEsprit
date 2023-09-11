@@ -82,7 +82,7 @@ app.post("/login", async (req, res) => {
         }
 
         const user = await User.findOne({ email });
-
+        console.log(user);
 
         if (user && await bcrypt.compare(password, user.password)) {
             const token = jwt.sign(

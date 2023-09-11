@@ -82,24 +82,25 @@
             </mat-step>
 
             <mat-step [stepControl]="secondFormGroup" label="Additional Questions">
-                <form [formGroup]="secondFormGroup">
+                
+                <form [formGroup]="form">
                     <div class="row mt-4">
                         <h1>What is your name?</h1>
                         <!-- Remove the ng-template matStepLabel -->
 
                         <h4>Email*</h4>
                         <mat-form-field class="col-12" appearance="fill">
-                            <input matInput placeholder="Enter Email" [value]="userInfo.email">
+                            <input formControlName="email" matInput placeholder="Enter Email" [value]="userInfo.email">
                         </mat-form-field>
 
                         <h4>First name*</h4>
                         <mat-form-field class="col-12" appearance="fill">
-                            <input matInput placeholder="Enter first name" [value]="userInfo.firstName">
+                            <input formControlName="firstName" matInput placeholder="Enter first name" [value]="userInfo.firstName">
                         </mat-form-field>
 
                         <h4>Last name*</h4>
                         <mat-form-field class="col-12">
-                            <input matInput placeholder="Enter last name" [value]="userInfo.lastName">
+                            <input formControlName="lastName" matInput placeholder="Enter last name" [value]="userInfo.lastName">
                         </mat-form-field>
 
                     </div>
@@ -112,7 +113,7 @@
             </mat-step>
 
             <mat-step [stepControl]="secondFormGroup" label="Additional Questions">
-                <form [formGroup]="secondFormGroup">
+                <form [formGroup]="form">
                     <div class="row mt-4">
                         <h1>Would you like to add a phone number to your resume?</h1>
                         <!-- Remove the ng-template matStepLabel -->
@@ -121,11 +122,11 @@
 
                         <mat-form-field class="col-12">
                             <mat-icon matPrefix>phone</mat-icon>
-                            <input matInput placeholder="Enter phone number" [value]="userInfo.phone">
+                            <input matInput formControlName="phoneNumber" placeholder="Enter phone number" [value]="userInfo.phone">
                         </mat-form-field>
                         <mat-checkbox color="primary">
                             <b>
-                                Show my number on Indeed
+                                Show my number on <span class="text-primary">Esprit Now</span> 
                             </b>
                         </mat-checkbox>
 

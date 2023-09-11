@@ -18,6 +18,7 @@ export class UserFormComponent {
   anotherSchoolEnabled: boolean = false;
   espritSchoolsEnabled: boolean = false;
   keepSpinning: boolean = true;
+  user!: any;
   userInfo: any = {
     "firstName": "",
     "lastName": "",
@@ -48,6 +49,9 @@ export class UserFormComponent {
   firstFormGroup = this._formBuilder.group({
     //firstCtrl: ['', Validators.required],
   });
+
+  form:any;
+
   secondFormGroup = this._formBuilder.group({
     //secondCtrl: ['', Validators.required],
   });
@@ -102,6 +106,14 @@ export class UserFormComponent {
       startWith(''),
       map(value => this._filter(value || '')),
     );
+
+    this.user = JSON.parse(localStorage.getItem('user') || '{}');
+    this.form = this._formBuilder.group({
+      firstName: [this.user.firstName, Validators.required],
+      lastName: [this.user.lastName, Validators.required],
+      email: [this.user.email, Validators.required],
+      phoneNumber: [this.user.phoneNumber, Validators.required]
+  });
 
   }
   constructor(private _formBuilder: FormBuilder, private http: HttpClient) { }

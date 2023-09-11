@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
     loading = false;
     submitted = false;
 
+
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
@@ -38,10 +39,11 @@ export class RegisterComponent implements OnInit {
             password: ['', [Validators.required, Validators.minLength(6)]],
             confirmPassword: ['', [Validators.required, this.passwordMatchValidator]],
             type: ['user', Validators.required],
-            phone: ['', Validators.required],
+            phoneNumber: ['', Validators.required],
             companyName: [' ', Validators.required]
         });
 
+        
     }
 
     passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {

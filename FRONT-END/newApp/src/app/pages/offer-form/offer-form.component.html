@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-auto">
                             <b>
-                                Nizar ouertani
+                                {{user.firstName | titlecase}} {{user.lastName | titlecase}}
                             </b>
                             <br>
                             Software engineer
@@ -109,11 +109,8 @@
 
             <mat-step>
                 <ng-template matStepLabel>Done</ng-template>
-                <p>You are now done.</p>
-                <button mat-button color="primary">
-                    Review your application
-                    <mat-icon>rate_review</mat-icon>
-                </button>
+                <p>You are now done!</p>
+
                 <div class="row">
                     <button class="col-1 ms-auto" mat-button matStepperPrevious>Back</button>
                     <button class="col-1" mat-button (click)="sumbitCandidature();closeDialog()">Submit</button>

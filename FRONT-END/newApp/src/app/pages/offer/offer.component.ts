@@ -75,8 +75,9 @@ export class OfferComponent {
     
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(OfferFormComponent);
+  openDialog(companyId:any): void {
+    const dialogRef = this.dialog.open(OfferFormComponent,{
+      data: { companyId: companyId }});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

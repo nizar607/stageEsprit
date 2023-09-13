@@ -2,6 +2,8 @@ require("dotenv").config();
 const express = require('express')
 const mongoose = require('mongoose')
 const Offer = require('./models/offerModel')
+const User = require("./models/user");
+const Candidature = require("./models/candidature");
 const app = express();
 const cors = require('cors');
 const multer = require('multer');
@@ -9,9 +11,23 @@ const PDFParser = require('pdf-parse');
 const axios = require('axios');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const User = require("./models/user");
 const database = require("./config/database");
+const path = require('path');
+const UserProfile = require("./models/userProfile");
 
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, '../../FRONT-END/newApp/src/uploads/'); // Set the destination directory
+    },
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        const fileExtension = path.extname(file.originalname); // Get the file extension
+        const fileName = uniqueSuffix + fileExtension;
+        cb(null, fileName); // Set the file name
+    }
+});
+
+const upload = multer({ storage: storage });
 
 
 
@@ -20,13 +36,51 @@ const database = require("./config/database");
 
 
 const allowedOrigins = ['http://localhost:4200'];
-const upload = multer();
 app.use(cors());
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-//routes
+
+
+
+app.post('/resume', upload.single('resume'), (req, res) => {
+    try {
+        const file = req.file;
+        console.log(file);
+        if (!file) {
+            return res.status(400).json({ error: 'Resume file is required' });
+        }
+
+        res.json({ resume: file.filename });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+app.post("/candidature", async (req, res) => {
+    try {
+        const { userId, companyId, email, phoneNumber, resume } = req.body;
+
+        if (!email || !phoneNumber || !resume || !userId || !companyId) {
+            return res.status(400).json({ error: "All input is required" });
+        }
+
+        const candidature = await Candidature.create({
+            userId,
+            companyId,
+            email,
+            phoneNumber,
+            resume
+        });
+
+        return res.status(200).json(candidature);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
 
 // Register
 app.post("/register", async (req, res) => {
@@ -70,6 +124,9 @@ app.post("/register", async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
+
+
+
 
 // Login
 app.post("/login", async (req, res) => {
@@ -287,6 +344,73 @@ app.post('/upload', upload.single('resume'), async (req, res) => {
         res.status(500).send('Error processing PDF or making API request.');
     }
 });
+
+
+// user PROFILE
+app.get('/userProfile', async (req, res) => {
+    try {
+        const userProfiles = await UserProfile.find({});
+        res.status(200).json(userProfiles);
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
+app.get('/userProfile/:id', async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const userProfile = await UserProfile.findOne({userId});
+        res.status(200).json(userProfile);
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
+
+app.post('/userProfile', async (req, res) => {
+    console.log(req.body);
+    try {
+        const userProfile = await UserProfile.create(req.body)
+        res.status(200).json(userProfile);
+
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ message: error.message })
+    }
+})
+
+// update a offer
+app.put('/userProfile/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const userProfile = await UserProfile.findByIdAndUpdate(id, req.body);
+        // we cannot find any offer in database
+        if (!offer) {
+            return res.status(404).json({ message: `cannot find any offer with ID ${id}` })
+        }
+        const updateUserProfile = await UserProfile.findById(id);
+        res.status(200).json(updateUserProfile);
+
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
+// delete a offer
+
+app.delete('/userProfile/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const userProfile = await UserProfile.findByIdAndDelete(id);
+        if (!userProfile) {
+            return res.status(404).json({ message: `cannot find any offer with ID ${id}` })
+        }
+        res.status(200).json(userProfile);
+
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
 
 mongoose.set("strictQuery", false)
 mongoose.

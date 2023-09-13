@@ -22,13 +22,14 @@
 
         <mat-stepper [linear]="isLinear" #stepper>
 
-            <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
-                <form [formGroup]="secondFormGroup">
+            <mat-step [stepControl]="form" label="Fill out your address">
+                <form [formGroup]="form">
                     <div class="row mt-4">
                         <h2>Upload Your Resume</h2>
                         <p>Please upload your resume in PDF.</p>
 
-                        <button class="col-12 my-3" type="button" color="primary" mat-raised-button (click)="fileInput.click()" >
+                        <button class="col-12 my-3" type="button" color="primary" mat-raised-button
+                            (click)="fileInput.click()">
                             Upload your resume
                             <mat-icon>get_app</mat-icon>
                         </button>
@@ -44,14 +45,15 @@
                                 <div *ngIf="!keepSpinning" class="col-auto">
                                     <img src="/assets/img/logos/documentLogo.png" alt="document" style="width: 80px;">
                                 </div>
-                        
+
                                 <div *ngIf="!keepSpinning" class="col-auto my-auto">
                                     <h4 style="margin-bottom: 0px;"> <b>{{file?.name}}</b> </h4>
                                     <span class="text-muted">{{file?.lastModifiedDate | date:'short'}}</span>
                                 </div>
-                        
+
                                 <div *ngIf="!keepSpinning" class="col-auto ms-auto my-auto">
-                                    <button mat-icon-button [matMenuTriggerFor]="resumeMenu" aria-label="Example icon-button with a menu">
+                                    <button mat-icon-button [matMenuTriggerFor]="resumeMenu"
+                                        aria-label="Example icon-button with a menu">
                                         <mat-icon>more_vert</mat-icon>
                                     </button>
                                     <mat-menu #resumeMenu="matMenu">
@@ -69,20 +71,21 @@
                                         </button>
                                     </mat-menu>
                                 </div>
-                        
-                        
-                        
+
+
+
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <button class="col-1 ms-auto" mat-button matStepperNext (click)="updateProgress(25)">Next</button>
+                        <button class="col-1 ms-auto" mat-button matStepperNext
+                            (click)="updateProgress(25)">Next</button>
                     </div>
                 </form>
             </mat-step>
 
-            <mat-step [stepControl]="secondFormGroup" label="Additional Questions">
-                
+            <mat-step [stepControl]="form" label="Additional Questions">
+
                 <form [formGroup]="form">
                     <div class="row mt-4">
                         <h1>What is your name?</h1>
@@ -95,12 +98,14 @@
 
                         <h4>First name*</h4>
                         <mat-form-field class="col-12" appearance="fill">
-                            <input formControlName="firstName" matInput placeholder="Enter first name" [value]="userInfo.firstName">
+                            <input formControlName="firstName" matInput placeholder="Enter first name"
+                                [value]="userInfo.firstName">
                         </mat-form-field>
 
                         <h4>Last name*</h4>
                         <mat-form-field class="col-12">
-                            <input formControlName="lastName" matInput placeholder="Enter last name" [value]="userInfo.lastName">
+                            <input formControlName="lastName" matInput placeholder="Enter last name"
+                                [value]="userInfo.lastName">
                         </mat-form-field>
 
                     </div>
@@ -112,7 +117,7 @@
                 </form>
             </mat-step>
 
-            <mat-step [stepControl]="secondFormGroup" label="Additional Questions">
+            <mat-step [stepControl]="form" label="Additional Questions">
                 <form [formGroup]="form">
                     <div class="row mt-4">
                         <h1>Would you like to add a phone number to your resume?</h1>
@@ -122,11 +127,12 @@
 
                         <mat-form-field class="col-12">
                             <mat-icon matPrefix>phone</mat-icon>
-                            <input matInput formControlName="phoneNumber" placeholder="Enter phone number" [value]="userInfo.phone">
+                            <input matInput formControlName="phoneNumber" placeholder="Enter phone number"
+                                [value]="userInfo.phone">
                         </mat-form-field>
                         <mat-checkbox color="primary">
                             <b>
-                                Show my number on <span class="text-primary">Esprit Now</span> 
+                                Show my number on <span class="text-primary">Esprit Now</span>
                             </b>
                         </mat-checkbox>
 
@@ -154,9 +160,9 @@
                 </form>
             </mat-step>
 
-            <mat-step [stepControl]="secondFormGroup" label="Additional Questions">
-                <form [formGroup]="secondFormGroup">
+            <mat-step [stepControl]="form" label="Additional Questions">
                     <div class="row mt-4">
+                        <form [formGroup]="form">
                         <h1>Where are you located?</h1>
 
                         <span class="text-muted mb-3">
@@ -168,22 +174,20 @@
 
                         <h4 class="mt-3">Street address</h4>
                         <mat-form-field class="col-12">
-                            <input matInput placeholder="Enter street address" [value]="userInfo.streetAddress">
+                            <input formControlName="address" matInput placeholder="Enter street address">
                         </mat-form-field>
 
                         <h4>City, State*</h4>
                         <mat-form-field class="col-12">
-                            <input matInput placeholder="Enter city, state address" [value]="userInfo.city">
+                            <input formControlName="city" matInput placeholder="Enter city, state address">
                         </mat-form-field>
 
                         <h4>Postal code</h4>
                         <mat-form-field class="col-12">
-                            <input matInput placeholder="Enter postal code" [value]="userInfo.postalCode">
+                            <input formControlName="postalCode" matInput placeholder="Enter postal code">
                         </mat-form-field>
 
-
-
-
+                        </form>
                     </div>
                     <div class="row">
 
@@ -192,20 +196,20 @@
 
                         <button class="col-1" mat-button matStepperNext (click)="updateProgress(20)">next</button>
                     </div>
-                </form>
             </mat-step>
 
-            <mat-step [stepControl]="secondFormGroup" label="Additional Questions">
-                <form [formGroup]="secondFormGroup">
+            <mat-step [stepControl]="educationForm" label="Additional Questions">
+                <form [formGroup]="educationForm">
                     <div class="row mt-4">
                         <h1>Add education</h1>
 
-                        <div class="row border border-dark rounded p-3 w-100 mx-auto">
+
+                        <div *ngFor="let education of this.form.value.education;let i=index" class="row border border-dark rounded p-3 w-100 mx-auto">
                             <div class="col-auto">
-                                <h3><b> Business intelligence in ESB</b></h3>
+                                <h3><b> {{ education.major }}</b></h3>
                                 <p>
-                                    ddasc - Arizona<br>
-                                    September 2004 to October 2018
+                                    {{education.schoolName}}<br>
+                                    {{education.startingMonth}}/{{education.startingYear}} to {{education.finishingMonth}}/{{education.finishingYear}}
                                 </p>
                             </div>
                             <div class="col-auto ms-auto my-auto">
@@ -239,20 +243,11 @@
 
             <ng-container *ngIf="addEducationEnabled">
 
-                <mat-step [stepControl]="secondFormGroup" label="Additional Questions">
-                    <form [formGroup]="secondFormGroup">
+                <mat-step [stepControl]="educationForm" label="Additional Questions">
+                    <form [formGroup]="educationForm">
                         <div class="row mt-4">
                             <h1>Add education</h1>
 
-                            <h4>Field of study</h4>
-                            <mat-form-field class="col-12">
-                                <input matInput placeholder="computer science, mechanical engineer ...">
-                            </mat-form-field>
-
-                            <h4 class="mt-3">Level of education*</h4>
-                            <mat-form-field class="col-12">
-                                <input matInput placeholder="Enter street address">
-                            </mat-form-field>
 
 
                             <h4>School</h4>
@@ -277,16 +272,16 @@
                             </mat-form-field>
 
                             <mat-form-field *ngIf="anotherSchoolEnabled" class="col-12">
-                                <input matInput placeholder="School name">
+                                <input formControlName="schoolName" matInput placeholder="School name">
                             </mat-form-field>
 
 
-                            <form class="col-12" *ngIf="espritSchoolsEnabled">
+                            <div class="col-12" *ngIf="espritSchoolsEnabled">
                                 <mat-form-field class="col-12">
                                     <mat-label>choose major</mat-label>
 
-                                    <input type="text" placeholder="choose your school" aria-label="Number" matInput
-                                        [formControl]="myControl" [matAutocomplete]="auto">
+                                    <input formControlName="major" type="text" placeholder="choose your school" aria-label="Number" matInput
+                                     [matAutocomplete]="auto">
 
                                     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                                         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
@@ -295,14 +290,22 @@
 
                                     </mat-autocomplete>
                                 </mat-form-field>
-                            </form>
+                            </div>
+
+
+                            <mat-form-field class="col-12" *ngIf="anotherSchoolEnabled">
+                                <mat-label>choose major</mat-label>
+
+                                <input formControlName="major" type="text" placeholder="choose your school" aria-label="Number" matInput>
+
+                            </mat-form-field>
 
 
                             <h4>From</h4>
 
                             <mat-form-field class="col-6">
                                 <mat-label>Month</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="startingMonth">
                                     <mat-option *ngFor="let month of months" [value]="month">
                                         {{month}}
                                     </mat-option>
@@ -311,7 +314,7 @@
 
                             <mat-form-field class="col-6">
                                 <mat-label>Year</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="startingYear">
                                     <mat-option *ngFor="let year of years" [value]="year">
                                         {{year}}
                                     </mat-option>
@@ -323,7 +326,7 @@
 
                             <mat-form-field class="col-6">
                                 <mat-label>Month</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="finishingMonth">
                                     <mat-option *ngFor="let month of months" [value]="month">
                                         {{month}}
                                     </mat-option>
@@ -332,7 +335,7 @@
 
                             <mat-form-field class="col-6">
                                 <mat-label>Year</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="finishingYear">
                                     <mat-option *ngFor="let year of years" [value]="year">
                                         {{year}}
                                     </mat-option>

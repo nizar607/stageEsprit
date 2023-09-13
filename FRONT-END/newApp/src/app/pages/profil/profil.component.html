@@ -44,7 +44,7 @@
                 <div class="col-12 d-flex align-items-center">
                     <mat-icon>mail</mat-icon>
                     <span class="mb-2 ms-2">
-                        {{user.email}}
+                        {{profile.email}}
                     </span>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                 <div class="col-12 d-flex align-items-center">
                     <mat-icon>phone</mat-icon>
                     <span class="mb-2 ms-2">
-                        +216 {{user.phoneNumber}}
+                        +216 {{profile.phoneNumber}}
                     </span>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                 <div class="col-12 d-flex align-items-center">
                     <mat-icon>location_on</mat-icon>
                     <span class="mb-2 ms-2">
-                        ...........................................
+                        {{profile.address}} {{profile.city}} {{profile.postalCode}}
                     </span>
                 </div>
             </div>
@@ -95,7 +95,7 @@
     </div>
 
 </div>
-<ng-container *ngIf="file!=null;">
+<ng-container>
 
     <div class="container p-4 w-50 border border-grey rounded-2">
         <div class="row">
@@ -113,28 +113,21 @@
                     <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #resumeMenu="matMenu">
-                    <button mat-menu-item>
+                    <button mat-menu-item (click)="previewResume()">
                         <mat-icon>preview</mat-icon>
                         <span>Preview</span>
                     </button>
-                    <button mat-menu-item color="primary">
-                        <mat-icon>download</mat-icon>
-                        <span>Download</span>
-                    </button>
-                    <button mat-menu-item class="text-danger">
-                        <mat-icon color="warn">delete</mat-icon>
-                        <span>Delete</span>
-                    </button>
+
                 </mat-menu>
             </div>
 
-
-
         </div>
     </div>
+
+    <input value="https://exploringjs.com/impatient-js/downloads/impatient-js-preview-book.pdf" type="file" name="" id="">
 </ng-container>
 
-<ng-container class="row" *ngIf="file==null">
+<!-- <ng-container class="row" *ngIf="file==null">
     <div class="container p-4 w-50 border border-grey rounded-2">
         <div class="row">
             <div class="col-12">
@@ -147,4 +140,4 @@
         </div>
     </div>
 
-</ng-container>
+</ng-container> -->

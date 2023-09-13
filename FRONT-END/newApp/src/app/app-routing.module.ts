@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'company', loadChildren: () => import('../app/layouts/company-layout/company-layout.module').then(c => c.CompanyLayoutModule) ,canActivate: [AuthGuard] },
   { path: 'user', loadChildren: () => import('../app/layouts/user-layout/user-layout.module').then(m => m.UserLayoutModule) , canActivate: [AuthGuard] },
   { path: 'auth', loadChildren: () => import('../app/layouts/auth-layout/auth-layout.module').then(m => m.AuthLayoutModule) },
-  { path: '**', redirectTo: '' }
+  
 ];
 
 @NgModule({

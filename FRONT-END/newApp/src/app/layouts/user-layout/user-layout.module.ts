@@ -32,6 +32,8 @@ import { OfferMobileComponent } from 'src/app/pages/offer-mobile/offer-mobile.co
 import { UserFormComponent } from 'src/app/pages/user-form/user-form.component';
 import { ProfilComponent } from 'src/app/pages/profil/profil.component';
 import { UserNavComponent } from 'src/app/pages/user-nav/user-nav.component';
+import { CandidatureService } from 'src/app/services/candidature.service';
+import { OfferService } from 'src/app/services/offer.service';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,7 @@ import { UserNavComponent } from 'src/app/pages/user-nav/user-nav.component';
     MatProgressSpinnerModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [CandidatureService,OfferService],
   bootstrap: [UserLayoutComponent]
 })
 export class UserLayoutModule { }

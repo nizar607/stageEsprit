@@ -4,16 +4,36 @@ import { MatStepper } from '@angular/material/stepper';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { CandidatureService } from 'src/app/services/candidature.service';
+import { ProfileService } from 'src/app/services/profile.service';
 
+export interface UserProfile {
+  _id: String,
+  userId: String,
+  address: number,
+  city: String,
+  education:[],
+  email:[String],
+  firstName:String,
+  lastName: String,
+  phoneNumber:number,
+  postalCode:number,
+  resume:number,
+}
 
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.css'],
 })
+
+
+
+
 export class UserFormComponent {
 
 
+  
   addEducationEnabled: boolean = false;
   anotherSchoolEnabled: boolean = false;
   espritSchoolsEnabled: boolean = false;
@@ -50,13 +70,10 @@ export class UserFormComponent {
     //firstCtrl: ['', Validators.required],
   });
 
-  form:any;
+  form: any;
+  educationForm: any;
 
-  secondFormGroup = this._formBuilder.group({
-    //secondCtrl: ['', Validators.required],
-  });
-
-  currentYear: number = new Date().getFullYear();
+  currentYear: number = new Date().getFullYear()+10;
 
   startYear: number = 1923;
 
@@ -109,14 +126,28 @@ export class UserFormComponent {
 
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
     this.form = this._formBuilder.group({
-      firstName: [this.user.firstName, Validators.required],
-      lastName: [this.user.lastName, Validators.required],
-      email: [this.user.email, Validators.required],
-      phoneNumber: [this.user.phoneNumber, Validators.required]
-  });
+      email: [this.user.email],
+      firstName: [this.user.firstName],
+      lastName: [this.user.lastName],
+      phoneNumber: [this.user.phoneNumber],
+      address: [''],
+      city: [''],
+      postalCode: [''],
+      education: [[]],
+    });
+
+    this.educationForm = this._formBuilder.group({
+      schoolName: [''],
+      major: [''],
+      startingMonth: [''],
+      startingYear: [''],
+      finishingMonth: [''],
+      finishingYear: [''],
+    });
 
   }
-  constructor(private _formBuilder: FormBuilder, private http: HttpClient) { }
+  constructor(private _formBuilder: FormBuilder, private http: HttpClient,private candidatureService:CandidatureService, private profileService:ProfileService) { }
+
 
 
   selectLink(index: number) {
@@ -133,12 +164,29 @@ export class UserFormComponent {
   }
 
   addEducation() {
+    // this.anotherSchoolEnabled = false;
+    if(this.espritSchoolsEnabled){
+      this.educationForm.value.schoolName = "esprit";
+    }
+    this.form.value.education.push(this.educationForm.value);
+    this.form.value.resume=this.resumeName;
+    this.form.value.userId=this.user._id;
+    
+    console.log("profile complete ",this.form.value);
 
-    this.anotherSchoolEnabled = false;
+    this.profileService.createUserProfile(this.form.value).subscribe((res:any)=>{
+      console.log("user profile created ",res);
+    },
+    (error:any)=>{
+      console.log("user profile error ",error);
+    }
+    );
+
   }
 
   enableAnotherSchool(enable: boolean) {
     this.anotherSchoolEnabled = enable;
+    this.espritSchoolsEnabled = false;
   }
 
   enableEspritSchools(enable: boolean) {
@@ -155,47 +203,61 @@ export class UserFormComponent {
 
 
   file: any = null;
+  resumeName: string = "";
 
   onFileSelected(event: any): any {
     this.keepSpinning = true;
 
-    this.file = event.target.files[0];
+    this.file = event.currentTarget.files[0];
     if (!this.file || this.file.type !== 'application/pdf') {
       this.file = null;
       return null;
     }
 
+
     const formData = new FormData();
     formData.append('resume', this.file);
 
-    this.http.post<any>('http://localhost:3000/upload', formData).subscribe(
-      file => {
-        // Process the extracted data to fill form inputs programmatically
-        console.log("here dude ", file.aiResponse.LLAMA);
-        const regex = /(\}\s*)(\})*$/m;
-        // const result = file.aiResponse.LLAMA.replace(regex, (match: any, group1: any, group2: any) => {
-        //   if (group2.length > 0) {
-        //     return group1; // Remove extra curly braces
-        //   } else {
-        //     return match; // Keep original match
-        //   }
-        // });
-        const result = file.aiResponse.response;
-        console.log(result);
-
-        const jsonObject = JSON.parse(result);
-        console.log(jsonObject);
-
-        this.userInfo = jsonObject;
-        this.keepSpinning = false;
+    this.candidatureService.uploadResume(formData).subscribe(
+      (res: any) => {
+        console.log("resume here ", res);
+        this.form.value.resume=res.resume;
+        this.resumeName= res.resume;
+        this.form.value.resume=res.resume;
+        return res;
       },
-      error => {
-        console.error('Error while uploading PDF:', error);
-        this.keepSpinning = false;
-      }
+      (err: any) => {
+        console.log(err);
+        return "";
+      },
+      this.keepSpinning = false
     );
+
+    // this.http.post<any>('http://localhost:3000/upload', formData).subscribe(
+    //   file => {
+
+    //     console.log("here dude ", file.aiResponse.LLAMA);
+    //     const regex = /(\}\s*)(\})*$/m;
+
+    //     const result = file.aiResponse.response;
+    //     console.log(result);
+
+    //     const jsonObject = JSON.parse(result);
+    //     console.log(jsonObject);
+
+    //     this.userInfo = jsonObject;
+    //     this.keepSpinning = false;
+    //   },
+    //   error => {
+    //     console.error('Error while uploading PDF:', error);
+    //     this.keepSpinning = false;
+    //   }
+    // );
     return true;
   }
+
+
+
 
 
 }

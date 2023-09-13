@@ -1,11 +1,13 @@
-import { FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Component, ViewChild, TemplateRef, Input } from '@angular/core';
+import { FormBuilder, Validators, FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { Component, ViewChild, TemplateRef, Input, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { OfferService } from 'src/app/services/offer.service';
 import { ElementRef } from '@angular/core';
+import { CandidatureService } from 'src/app/services/candidature.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-offer-form',
@@ -15,58 +17,85 @@ import { ElementRef } from '@angular/core';
 export class OfferFormComponent {
   @ViewChild('successDialog') successDialogTemplate!: TemplateRef<any>;
   @ViewChild('fileInput', { static: false }) fileInput!: ElementRef;
-  pdfUrl: string = "file:///C:/Users/khali/Downloads/myResume%20.pdf";
+  @Input() companyId!: string;
+
   user!: any;
+  fileTypeError: boolean = false;
 
   file: any = null;
-  keepSpinning: boolean = true;
-  userInfo: any = {
-    "firstName": "",
-    "lastName": "",
-    "email": "",
-    "phone": "",
-    "streetAddress": "",
-    "postalCode": "",
-    "city": ""
-  };
+  keepSpinning: boolean = false;
 
   progressForm = 0;
   fileUrl!: string;
-  form!:FormBuilder;
-  
+  form!: FormGroup;
+
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
     this.form = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-  });
+      email: [this.user.email,],
+      phoneNumber: ['+216 ' + "20202020",],
+      resume: ['',],
+    });
+    this.companyId=this.data.companyId;
+    console.log("company id here ", this.companyId);
   }
-  constructor(private _formBuilder: FormBuilder, public dialog: MatDialog, private dialogRef: MatDialogRef<OfferFormComponent>, private http: HttpClient) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { companyId: string },
+    private formBuilder: FormBuilder,
+    public dialog: MatDialog,
+    private dialogRef: MatDialogRef<OfferFormComponent>,
+    private candidatureService: CandidatureService) {}
 
   updateProgress(value: number) {
     this.progressForm += value;
   }
-
   onFileSelected(event: any): any {
     this.keepSpinning = true;
-
-    this.file = event.target.files[0];
+    this.fileTypeError = false;
+    this.file = event.currentTarget.files[0];
 
     if (!this.file || this.file.type !== 'application/pdf') {
       this.file = null;
+      this.fileTypeError = true;
       return null;
     }
 
     const formData = new FormData();
     formData.append('resume', this.file);
-    setTimeout(() => {
-      this.keepSpinning = false;
-    }, 500);
 
-    return true;
+    this.candidatureService.uploadResume(formData).subscribe(
+      (res: any) => {
+        console.log("resume here ", res);
+        this.addCandidature(res.resume)
+        return res;
+      },
+      (err: any) => {
+        console.log(err);
+        return "";
+      },
+      this.keepSpinning = false
+    );
+
+    return "";
   }
+
+  addCandidature(resume: String) {
+    this.form.value.resume = resume;
+    this.form.value.userId = this.user._id;
+    this.form.value.companyId = this.companyId;
+
+    console.log("candidature here ", this.form.value);
+    this.candidatureService.addCandidature(this.form.value).subscribe(
+      (res: any) => {
+        console.log("candidature response here ", res);
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
+  }
+
+
+
 
 
 
@@ -100,17 +129,8 @@ export class OfferFormComponent {
         console.error('Error downloading PDF:', error);
       });
   }
-  
 
 
-
-
-  firstFormGroup = this._formBuilder.group({
-    //firstCtrl: ['', Validators.required],
-  });
-  secondFormGroup = this._formBuilder.group({
-    //secondCtrl: ['', Validators.required],
-  });
   isLinear = true;
 
 

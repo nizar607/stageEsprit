@@ -22,6 +22,7 @@ const routes: Routes = [
       { path: 'candidates', component: CandidatesComponent },
     ]
   }
+
 ];
 
 @NgModule({

@@ -8,6 +8,11 @@ import { UserLayoutModule } from './layouts/user-layout/user-layout.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CompanyLayoutModule } from './layouts/company-layout/company-layout.module';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { CompanyFormComponent } from './pages/company-form/company-form.component';
+import { CompanyProfileFormComponent } from './pages/company-profile-form/company-profile-form.component';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -38,6 +43,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
   declarations: [
     AppComponent,
     HomePageComponent,
+    CompanyProfileFormComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +53,10 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
     UserLayoutModule,
     CompanyLayoutModule,
     BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule
+
     // MatToolbarModule,
     // MatButtonModule,
     // MatDividerModule,

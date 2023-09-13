@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { RecuirtFormComponent } from '../../pages/recuirt-form/recuirt-form.component';
 
 
+
 // angular material
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
@@ -53,7 +54,7 @@ import { NgChartsModule } from 'ng2-charts';
     AboutComponent,
     LineComponent,
     BarComponent,
-    RecuirtFormComponent
+    RecuirtFormComponent,
   ],
   imports: [
     CommonModule,

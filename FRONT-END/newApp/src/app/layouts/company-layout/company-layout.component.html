@@ -1,89 +1,88 @@
+<mat-toolbar style="height: 70px;">
+  <button mat-icon-button (click)="drawer.toggle()" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Dashboard</span>
 
-    <mat-toolbar style="height: 70px;">
-    <button mat-icon-button (click)="drawer.toggle()" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <span>Dashboard</span>
-
-    <img class="ms-auto mt-2" src="/assets/img/Logo_ESPRIT_Ariana-removebg-preview.png" alt="esprit logo"
-        style="width: 150px;">
+  <img class="ms-auto mt-2" src="/assets/img/Logo_ESPRIT_Ariana-removebg-preview.png" alt="esprit logo"
+    style="width: 150px;">
 </mat-toolbar>
 
 <mat-sidenav-container [hasBackdrop]="false">
-    <mat-sidenav #drawer [mode]="'push'">
-        <app-company-nav></app-company-nav>
-    </mat-sidenav>
+  <mat-sidenav #drawer [mode]="'push'">
+    <app-company-nav></app-company-nav>
+  </mat-sidenav>
 
-    <mat-sidenav-content>
+  <mat-sidenav-content>
 
-        <div class="container-fluid">
-            <div class="row cover-image-wrapper" style="position: relative;">
-                <img class="cover-image" src="/assets/img/logos/hexa-cover.png" alt="">
-                <button mat-button style="position: absolute; top:0px; height: 100%;;">
-                    <i class="fas fa-edit fa-3x me-3"></i>
-                    <span class="display-6">Add cover image</span>
-                </button>
+    <div class="container-fluid">
+      <div class="row cover-image-wrapper" style="position: relative;">
+        <img class="cover-image" src="/assets/img/logos/hexa-cover.png" alt="">
+        <button mat-button style="position: absolute; top:0px; height: 100%;;">
+          <i class="fas fa-edit fa-3x me-3"></i>
+          <span class="display-6">Add cover image</span>
+        </button>
+      </div>
+      <div class="container w-100 w-lg-50 mt-3">
+
+        <div class="row">
+          <div class="col-12 col-lg-2 company-profile">
+            <img src="/assets/img/logos/company-profile-image.jpg" style="width: 100px;">
+          </div>
+          <div class="col-12 col-lg-2">
+            <div class="row">
+              <h2 class="col mt-3">Baptist Memorial Health Care</h2>
             </div>
-            <div class="container w-100 w-lg-50 mt-3">
-
-                <div class="row">
-                    <div class="col-12 col-lg-2 company-profile">
-                        <img src="/assets/img/logos/company-profile-image.jpg" style="width: 100px;">
-                    </div>
-                    <div class="col-12 col-lg-2">
-                        <div class="row">
-                            <h2 class="col mt-3">Baptist Memorial Health Care</h2>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-lg-auto stars-icons">
-                                <span *ngFor="let i of [1,2,3,4,5]" class="star-icon">
-                                    <mat-icon class="stars">{{ 3 >= i ? 'star' : 'star_border' }}</mat-icon>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-lg-auto my-auto ms-auto">
-                        <button class="col-12" id="follow" mat-flat-button color="primary" (click)="openDialog()">
-                            Add a job
-                        </button>
-                    </div>
-
-                </div>
+            <div class="row">
+              <div class="col-12 col-lg-auto stars-icons">
+                <span *ngFor="let i of [1,2,3,4,5]" class="star-icon">
+                  <mat-icon class="stars">{{ 3 >= i ? 'star' : 'star_border' }}</mat-icon>
+                </span>
+              </div>
             </div>
+          </div>
 
-            <main class="d-none d-lg-block mt-5">
+          <div class="col-12 col-lg-auto my-auto ms-auto">
+            <button class="col-12" id="follow" mat-flat-button color="primary" (click)="openDialog()">
+              Add a job
+            </button>
+          </div>
 
-
-
-
-                
-                <input routerLink="/company/about" id="tab0" type="radio" name="tabs" disabled>
-                <label class="tab0" for="tab0" style="width: 33%;"></label>
-
-
-
-
-                <input routerLink="/company/about" id="tab1" type="radio" name="tabs" checked>
-                <label class="" for="tab1">About</label>
-
-                <input routerLink="/company/jobs" id="tab2" type="radio" name="tabs">
-                <label class="" for="tab2">Jobs</label>
-
-                <input routerLink="/company/reviews" id="tab3" type="radio" name="tabs">
-                <label class="" for="tab3">Reviews</label>
-
-
-                <section id="content1">
-
-                </section>
-
-            </main>
-
-            <router-outlet></router-outlet>
         </div>
+      </div>
+
+      <main class="d-none d-lg-block mt-5">
 
 
 
-    </mat-sidenav-content>
+
+
+        <input routerLink="/company/about" id="tab0" type="radio" name="tabs" disabled>
+        <label class="tab0" for="tab0" style="width: 33%;"></label>
+
+
+
+
+        <input routerLink="/company/about" id="tab1" type="radio" name="tabs" checked>
+        <label class="" for="tab1">About</label>
+
+        <input routerLink="/company/jobs" id="tab2" type="radio" name="tabs">
+        <label class="" for="tab2">Jobs</label>
+
+        <input routerLink="/company/reviews" id="tab3" type="radio" name="tabs">
+        <label class="" for="tab3">Reviews</label>
+
+
+        <section id="content1">
+
+        </section>
+
+      </main>
+
+      <router-outlet></router-outlet>
+    </div>
+
+
+
+  </mat-sidenav-content>
 </mat-sidenav-container>
